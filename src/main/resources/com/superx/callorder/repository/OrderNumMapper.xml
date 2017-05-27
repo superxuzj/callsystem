@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.superx.callorder.repository.OrderNumMapper" >
+  <resultMap id="BaseResultMap" type="com.superx.callorder.entity.OrderNum" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="BUSINESS_ID" property="businessId" jdbcType="INTEGER" />
+    <result column="ORDER_NUM" property="orderNum" jdbcType="INTEGER" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="OPERATOR_ID" property="operatorId" jdbcType="INTEGER" />
+    <result column="OPERATOR_NAME" property="operatorName" jdbcType="VARCHAR" />
+    <result column="OPERATOR_TIME" property="operatorTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="INTEGER" />
+    <result column="CREATOR_NAME" property="creatorName" jdbcType="VARCHAR" />
+    <result column="CREATOR_TIME" property="creatorTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, BUSINESS_ID, ORDER_NUM, TYPE, STATUS, OPERATOR_ID, OPERATOR_NAME, OPERATOR_TIME, 
+    CREATOR_ID, CREATOR_NAME, CREATOR_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ordernum
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_ordernum
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.superx.callorder.entity.OrderNum" >
+    insert into t_ordernum (ID, BUSINESS_ID, ORDER_NUM, 
+      TYPE, STATUS, OPERATOR_ID, 
+      OPERATOR_NAME, OPERATOR_TIME, CREATOR_ID, 
+      CREATOR_NAME, CREATOR_TIME)
+    values (#{id,jdbcType=INTEGER}, #{businessId,jdbcType=INTEGER}, #{orderNum,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{operatorId,jdbcType=INTEGER}, 
+      #{operatorName,jdbcType=VARCHAR}, #{operatorTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=INTEGER}, 
+      #{creatorName,jdbcType=VARCHAR}, #{creatorTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.superx.callorder.entity.OrderNum" >
+    insert into t_ordernum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="businessId != null" >
+        BUSINESS_ID,
+      </if>
+      <if test="orderNum != null" >
+        ORDER_NUM,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="operatorId != null" >
+        OPERATOR_ID,
+      </if>
+      <if test="operatorName != null" >
+        OPERATOR_NAME,
+      </if>
+      <if test="operatorTime != null" >
+        OPERATOR_TIME,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="creatorName != null" >
+        CREATOR_NAME,
+      </if>
+      <if test="creatorTime != null" >
+        CREATOR_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="businessId != null" >
+        #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorName != null" >
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="creatorName != null" >
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorTime != null" >
+        #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.superx.callorder.entity.OrderNum" >
+    update t_ordernum
+    <set >
+      <if test="businessId != null" >
+        BUSINESS_ID = #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null" >
+        ORDER_NUM = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        OPERATOR_ID = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorName != null" >
+        OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        OPERATOR_TIME = #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="creatorName != null" >
+        CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorTime != null" >
+        CREATOR_TIME = #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.superx.callorder.entity.OrderNum" >
+    update t_ordernum
+    set BUSINESS_ID = #{businessId,jdbcType=INTEGER},
+      ORDER_NUM = #{orderNum,jdbcType=INTEGER},
+      TYPE = #{type,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      OPERATOR_ID = #{operatorId,jdbcType=INTEGER},
+      OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      OPERATOR_TIME = #{operatorTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{creatorId,jdbcType=INTEGER},
+      CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      CREATOR_TIME = #{creatorTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectOrderedNum" resultType="int" parameterType="com.superx.callorder.entity.OrderNum">
+   	    select 
+    count(0)
+    from t_ordernum
+    <where>
+         <if test="businessId != null">
+            AND BUSINESS_ID = #{businessId,jdbcType=INTEGER}
+        </if>
+        <if test="type != null">
+            AND TYPE = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="creatorTime != null">
+            AND date(CREATOR_TIME) = curdate()
+        </if>
+    </where>
+    
+   	</select>
+   	<select id="selectNohandleOrderedNum" resultType="int" parameterType="com.superx.callorder.entity.OrderNum">
+   	    select 
+    count(0)
+    from t_ordernum
+    <where>
+         <if test="businessId != null">
+            AND BUSINESS_ID = #{businessId,jdbcType=INTEGER}
+        </if>
+        <if test="type != null">
+            AND TYPE = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null and status!='12'">
+            AND STATUS = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null and status=='12' and status !=''" >
+        	AND (STATUS = '1' or STATUS = '2')
+        	</if>
+        <if test="creatorTime != null">
+            AND date(CREATOR_TIME) = curdate()
+            
+        </if>
+         <if test="orderNum != null">
+            AND ORDER_NUM <![CDATA[ <]]> #{orderNum,jdbcType=VARCHAR}
+        </if>
+    </where>
+   	</select>
+   	
+  <select id="selectOrderListByRecord" resultMap="BaseResultMap"  parameterType="com.superx.callorder.entity.OrderNum">
+   	    select 
+    <include refid="Base_Column_List" />
+    from t_ordernum
+	    <where>
+	         <if test="businessId != null">
+	            AND BUSINESS_ID = #{businessId,jdbcType=INTEGER}
+	        </if>
+	        <if test="type != null">
+	            AND TYPE = #{type,jdbcType=VARCHAR}
+	        </if>
+	        <if test="status != null and status!='12'">
+	            AND STATUS = #{status,jdbcType=VARCHAR}
+	        </if>
+	        <if test="status != null and status=='12' and status !=''" >
+        	AND (STATUS = '1' or STATUS = '2')
+        	</if>
+	        <if test="creatorId != null">
+	            AND CREATOR_ID = #{creatorId,jdbcType=VARCHAR}
+	        </if>
+	        <if test="creatorTime != null">
+	            AND date(CREATOR_TIME) = curdate()
+	        </if>
+	    </where>
+   	</select>
+   	
+  <select id="selectOrderNumTop2" resultMap="BaseResultMap"  parameterType="com.superx.callorder.entity.OrderNum">
+   	    select 
+    <include refid="Base_Column_List" />
+    from t_ordernum
+	    <where>
+	         <if test="businessId != null">
+	            AND BUSINESS_ID = #{businessId,jdbcType=INTEGER}
+	        </if>
+	        <if test="type != null">
+	            AND TYPE = #{type,jdbcType=VARCHAR}
+	        </if>
+	        <if test="status != null and status!='12'">
+	            AND STATUS = #{status,jdbcType=VARCHAR}
+	        </if>
+	        <if test="status != null and status=='12' and status !=''" >
+        	AND (STATUS = '1' or STATUS = '2')
+        	</if>
+	        <if test="creatorTime != null">
+	            AND date(CREATOR_TIME) = curdate()
+	        </if>
+	    </where>
+	    ORDER BY CREATOR_TIME ASC LIMIT 2
+   	</select>
+  
+</mapper>

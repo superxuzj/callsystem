@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.superx.callorder.repository.BusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.superx.callorder.entity.Business" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="PAUSE_REASON" property="pauseReason" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="MAX_NUM" property="maxNum" jdbcType="INTEGER" />
+    <result column="AM_START_TIME" property="amStartTime" jdbcType="TIMESTAMP" />
+    <result column="AM_END_TIME" property="amEndTime" jdbcType="TIMESTAMP" />
+    <result column="PM_START_TIME" property="pmStartTime" jdbcType="TIMESTAMP" />
+    <result column="PM_END_TIME" property="pmEndTime" jdbcType="TIMESTAMP" />
+    <result column="OPERATOR_ID" property="operatorId" jdbcType="INTEGER" />
+    <result column="OPERATOR_NAME" property="operatorName" jdbcType="VARCHAR" />
+    <result column="OPERATOR_TIME" property="operatorTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="INTEGER" />
+    <result column="CREATOR_NAME" property="creatorName" jdbcType="VARCHAR" />
+    <result column="CREATOR_TIME" property="creatorTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, STATUS, TYPE, PAUSE_REASON, CONTENT, MAX_NUM, AM_START_TIME, AM_END_TIME, 
+    PM_START_TIME, PM_END_TIME, OPERATOR_ID, OPERATOR_NAME, OPERATOR_TIME, CREATOR_ID, 
+    CREATOR_NAME, CREATOR_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_business
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_business
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.superx.callorder.entity.Business" >
+    insert into t_business (ID, NAME, STATUS, 
+      TYPE, PAUSE_REASON, CONTENT, 
+      MAX_NUM, AM_START_TIME, AM_END_TIME, 
+      PM_START_TIME, PM_END_TIME, OPERATOR_ID, 
+      OPERATOR_NAME, OPERATOR_TIME, CREATOR_ID, 
+      CREATOR_NAME, CREATOR_TIME)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{pauseReason,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{maxNum,jdbcType=INTEGER}, #{amStartTime,jdbcType=TIMESTAMP}, #{amEndTime,jdbcType=TIMESTAMP}, 
+      #{pmStartTime,jdbcType=TIMESTAMP}, #{pmEndTime,jdbcType=TIMESTAMP}, #{operatorId,jdbcType=INTEGER}, 
+      #{operatorName,jdbcType=VARCHAR}, #{operatorTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=INTEGER}, 
+      #{creatorName,jdbcType=VARCHAR}, #{creatorTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.superx.callorder.entity.Business" >
+    insert into t_business
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="pauseReason != null" >
+        PAUSE_REASON,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="maxNum != null" >
+        MAX_NUM,
+      </if>
+      <if test="amStartTime != null" >
+        AM_START_TIME,
+      </if>
+      <if test="amEndTime != null" >
+        AM_END_TIME,
+      </if>
+      <if test="pmStartTime != null" >
+        PM_START_TIME,
+      </if>
+      <if test="pmEndTime != null" >
+        PM_END_TIME,
+      </if>
+      <if test="operatorId != null" >
+        OPERATOR_ID,
+      </if>
+      <if test="operatorName != null" >
+        OPERATOR_NAME,
+      </if>
+      <if test="operatorTime != null" >
+        OPERATOR_TIME,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="creatorName != null" >
+        CREATOR_NAME,
+      </if>
+      <if test="creatorTime != null" >
+        CREATOR_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="pauseReason != null" >
+        #{pauseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="maxNum != null" >
+        #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="amStartTime != null" >
+        #{amStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amEndTime != null" >
+        #{amEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pmStartTime != null" >
+        #{pmStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pmEndTime != null" >
+        #{pmEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorName != null" >
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="creatorName != null" >
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorTime != null" >
+        #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.superx.callorder.entity.Business" >
+    update t_business
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="pauseReason != null" >
+        PAUSE_REASON = #{pauseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="maxNum != null" >
+        MAX_NUM = #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="amStartTime != null" >
+        AM_START_TIME = #{amStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amEndTime != null" >
+        AM_END_TIME = #{amEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pmStartTime != null" >
+        PM_START_TIME = #{pmStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pmEndTime != null" >
+        PM_END_TIME = #{pmEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        OPERATOR_ID = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorName != null" >
+        OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        OPERATOR_TIME = #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="creatorName != null" >
+        CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorTime != null" >
+        CREATOR_TIME = #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+   <update id="updateByTypeSelective" parameterType="com.superx.callorder.entity.Business" >
+    update t_business
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="pauseReason != null" >
+        PAUSE_REASON = #{pauseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="maxNum != null" >
+        MAX_NUM = #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="amStartTime != null" >
+        AM_START_TIME = #{amStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amEndTime != null" >
+        AM_END_TIME = #{amEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pmStartTime != null" >
+        PM_START_TIME = #{pmStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pmEndTime != null" >
+        PM_END_TIME = #{pmEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        OPERATOR_ID = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorName != null" >
+        OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        OPERATOR_TIME = #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="creatorName != null" >
+        CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorTime != null" >
+        CREATOR_TIME = #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+     <where>
+        <if test="type != null and type!=''">
+            AND TYPE = #{type,jdbcType=VARCHAR}
+        </if>
+    </where>
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.superx.callorder.entity.Business" >
+    update t_business
+    set NAME = #{name,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      PAUSE_REASON = #{pauseReason,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      MAX_NUM = #{maxNum,jdbcType=INTEGER},
+      AM_START_TIME = #{amStartTime,jdbcType=TIMESTAMP},
+      AM_END_TIME = #{amEndTime,jdbcType=TIMESTAMP},
+      PM_START_TIME = #{pmStartTime,jdbcType=TIMESTAMP},
+      PM_END_TIME = #{pmEndTime,jdbcType=TIMESTAMP},
+      OPERATOR_ID = #{operatorId,jdbcType=INTEGER},
+      OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      OPERATOR_TIME = #{operatorTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{creatorId,jdbcType=INTEGER},
+      CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      CREATOR_TIME = #{creatorTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="selectBusinessList" resultMap="BaseResultMap"  parameterType="com.superx.callorder.entity.Business">
+   	    select 
+    <include refid="Base_Column_List" />
+    from t_business
+    <where>
+        <if test="type != null">
+            AND TYPE = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            AND STATUS = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="name != null">
+            AND NAME = #{name,jdbcType=VARCHAR}
+        </if>
+    </where>
+   	</select>
+</mapper>
