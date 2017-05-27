@@ -13,7 +13,7 @@ import java.util.List;
 public class Pager<T> implements Serializable{
 
 	/**
-	 * 
+	 * git
 	 */
 	private static final long serialVersionUID = 1L;
 	private int pageSize; // 每页显示多少条记录
