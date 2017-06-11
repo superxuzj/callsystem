@@ -76,7 +76,7 @@ public class BusinessController extends BaseCommonController{
 				}
 				if(orderList.size()>1){
 					OrderNum next = orderList.get(1);
-					User nextuser = userService.selectByPrimaryKey(current.getCreatorId());
+					User nextuser = userService.selectByPrimaryKey(next.getCreatorId());
 					next.setPhone(nextuser.getPhone());
 					next.setDepartment(nextuser.getDepartment());
 					model.addAttribute("next", next);//下一位
