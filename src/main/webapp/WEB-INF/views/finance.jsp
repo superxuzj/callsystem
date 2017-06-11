@@ -463,6 +463,18 @@ hr{
 			 $("#businessChoose").val(businesstype);
 		}
 	});
+	
+	// 业务开始状态，2分钟刷新一次 
+	$(document).ready(function(){
+		var businessstatus=${business.status}+"";
+		if(businessstatus=="1"){
+			window.setInterval(function(){ 
+				  window.location.reload();
+			},120000);
+		}
+	});
+	
+	
 	$(document).ready(function(){
 		var length = $("#ullist li").length;
 		if(length==1){

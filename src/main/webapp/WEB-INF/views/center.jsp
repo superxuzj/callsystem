@@ -110,7 +110,11 @@ fieldset,img{border:0;}
 		$('#imgcenter').css('width', null);
 		
 	});
-	
+	$(document).ready(function(){
+		window.setInterval(function(){ 
+			  window.location.reload();
+		},120000);
+	});
 	</script>
 </body>
 
