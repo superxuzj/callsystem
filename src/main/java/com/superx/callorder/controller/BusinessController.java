@@ -149,8 +149,10 @@ public class BusinessController extends BaseCommonController{
 			current.setStatus("2");//把第一个设置为处理中
 			User user = userService.selectByPrimaryKey(current.getCreatorId());
 			String phone = "tel:"+user.getPhone();
+			//String phone = "tel:15210419293;tel:18611453795";
 			//String phone = "tel:18631253aasas795";
 			SendMessageUtil.sendMessage(phone, this.getDictValueByCode("NEXT"));//下一位短信
+			
 			orderNumService.updateByPrimaryKeySelective(current);
 		}
 		return "redirect:/business?type="+business.getType();
@@ -217,7 +219,8 @@ public class BusinessController extends BaseCommonController{
 		
 		String tels = "";
 		tels = "tel:"+user.getPhone();
-		SendMessageUtil.sendMessage(tels, this.getDictValueByCode("CANCLE"));//结束短信
+		SendMessageUtil.sendMessage(tels, this.getDictValueByCode("CANCLE"));
+		//结束短信
 	
 		return "redirect:/business?type="+orderNum.getType();
 	}
@@ -258,7 +261,8 @@ public class BusinessController extends BaseCommonController{
 			}
 			tels = tels.substring(0, tels.length()-1);
 		}
-		SendMessageUtil.sendMessage(tels, this.getDictValueByCode("END"));//结束短信
+		SendMessageUtil.sendMessage(tels, this.getDictValueByCode("END"));
+		//结束短信
 		//发送短信
 		return "redirect:/business?type="+record.getType();
 	}

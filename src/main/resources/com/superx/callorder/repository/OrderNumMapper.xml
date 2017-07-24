@@ -253,7 +253,7 @@
 	            AND date(CREATOR_TIME) = curdate()
 	        </if>
 	    </where>
-	    ORDER BY CREATOR_TIME ASC LIMIT 2
+	    ORDER BY ORDER_NUM ASC,CREATOR_TIME ASC LIMIT 2
    	</select>
   
 </mapper>

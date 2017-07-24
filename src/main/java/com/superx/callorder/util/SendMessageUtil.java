@@ -1,8 +1,11 @@
 package com.superx.callorder.util;
 
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.rmi.RemoteException;
 
 import org.apache.axis.client.Service;
+import org.apache.axis.types.URI.MalformedURIException;
 
 import com.roya.mas.platform.business.SiMockStub;
 import com.roya.mas.platform.schema.sms.MessageFormat;
@@ -19,10 +22,14 @@ public class SendMessageUtil {
 	 * @param tels 短信号码tel:18611453795;tel:18611453795;tel:18611453795tel
 	 * @param message 信息内容
 	 * @return
+	 * @throws MalformedURIException 
+	 * @throws MalformedURLException 
+	 * @throws RemoteException 
 	 */
-	public static String sendMessage(String tels,String message){
+	public static String sendMessage(String tels,String message) {
 		String requestIdentifier = "";
 		URL url;
+		
 		try {
 			url = new URL("http://10.9.1.180/services/cmcc_mas_wbs");
 			Service service = new Service();
@@ -46,9 +53,20 @@ public class SendMessageUtil {
 			s.setDestinationAddresses(ary);
 			SendSmsResponse rep = stub.sendSms(s);
 			requestIdentifier = rep.getRequestIdentifier();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (MalformedURIException c) {
+			System.out.println("MalformedURIException");
+			System.out.println(c.getMessage());
+			c.printStackTrace();
+		} catch (MalformedURLException c) {
+			System.out.println("MalformedURLException");
+			System.out.println(c.getMessage());
+			c.printStackTrace();
+		} catch (RemoteException c) {
+			System.out.println("RemoteException");
+			System.out.println(c.getMessage());
+			c.printStackTrace();
 		}
+			
 		System.out.println("requestIdentifier="+requestIdentifier);
 		return requestIdentifier;
 	}

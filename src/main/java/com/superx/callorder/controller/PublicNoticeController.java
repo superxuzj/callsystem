@@ -53,7 +53,9 @@ public class PublicNoticeController extends BaseCommonController{
 			}
 			tels = tels.substring(0, tels.length()-1);
 		}
+		
 		SendMessageUtil.sendMessage(tels, publicNotice.getContent());
+		
 		return "redirect:/business";
 	}
 }
