@@ -42,6 +42,8 @@ fieldset,img{border:0;}
 .input-box .zxqh{ position:absolute; top:150px; left:0px;display:block ;}/*相对于input-box的位置*/
 .input-box button{display:block ;height:80px;}
 .input-box p{ line-height:20px;}
+
+.input-box .gzcx{ position:absolute; top:300px; left:0px;display:block ;}/*相对于input-box的位置*/
 </style>
 </head>
 <body>
@@ -79,7 +81,13 @@ fieldset,img{border:0;}
 					</c:otherwise>
 				</c:choose>
 				
+				<p></p>
+				<button type="button" class="btn btn-large btn-block btn-success gzcx" onclick="go_salary()">
+						<font size=6>工资查询</font>
+					</button>
+				
 			</div>
+			
 		</div>
 		<div class="text">
 			<p></p>
@@ -100,6 +108,9 @@ fieldset,img{border:0;}
 	<script src="<%=request.getContextPath()%>/callstatic/bootstrap/js/jquery.bootstrap.newsbox.js"
 		type="text/javascript"></script>
 	<script type="text/javascript">
+	function go_salary(){
+		window.location.href = "<%=request.getContextPath()%>/salary/vercode";
+	}
 	function order_hnum(){
 		window.location.href = "<%=request.getContextPath()%>/center/horder";
 	}

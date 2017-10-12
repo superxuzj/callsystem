@@ -2,8 +2,6 @@ package com.superx.callorder.repository;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.superx.callorder.entity.User;
 
 public interface UserMapper {

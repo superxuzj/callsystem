@@ -4,14 +4,12 @@ import java.net.URL;
 
 import org.apache.axis.client.Service;
 
-import com.roya.mas.common.PathUtil;
 import com.roya.mas.platform.business.SiMockStub;
 import com.roya.mas.platform.schema.sms.MessageFormat;
 import com.roya.mas.platform.schema.sms.SendMethodType;
 import com.roya.mas.platform.schema.sms.SendSmsRequest;
 import com.roya.mas.platform.schema.sms.SendSmsResponse;
 import com.roya.mas.test.TestBase;
-import com.roya.mas.test.sms.SendSms;
 
 public class Test extends TestBase{
 

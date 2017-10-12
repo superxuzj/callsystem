@@ -123,7 +123,7 @@
 <script src="<%=request.getContextPath()%>/callstatic/assets/DT_bootstrap.js"></script>
 <script>
 function delUser(userid){
-	if(window.confirm('你确定要取消交易吗？')){
+	if(window.confirm('你确定要删除吗？')){
         //alert("确定");
 		window.location.href="<%=request.getContextPath()%>/manage/deluser?id="+userid;
      }else{
