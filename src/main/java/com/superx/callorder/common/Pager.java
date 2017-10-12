@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * 个人推荐pager
  * @author xuzj
- *
  * @param <T>
  */
 public class Pager<T> implements Serializable{
