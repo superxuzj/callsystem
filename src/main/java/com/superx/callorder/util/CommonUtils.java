@@ -1,5 +1,7 @@
 package com.superx.callorder.util;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletResponse;
 
 public class CommonUtils {
@@ -13,5 +15,20 @@ public class CommonUtils {
 		response.setHeader(CACHE_CONTROL, HTTP_NO_CACHE); 
 		response.addHeader(CACHE_CONTROL, IE_HTTP_NO_CACHE); 
 		response.setHeader(PRAGMA, STANDARD_HTTP_NO_CACHE); 
+    }
+    
+    /**
+     * 产生4位随机数(0000-9999)
+     * @return 4位随机数
+     */
+    public static String getFourRandom(){
+        Random random = new Random();
+        String fourRandom = random.nextInt(10000) + "";
+        int randLength = fourRandom.length();
+        if(randLength<4){
+          for(int i=1; i<=4-randLength; i++)
+              fourRandom = "0" + fourRandom  ;
+      }
+        return fourRandom;
     }
 }

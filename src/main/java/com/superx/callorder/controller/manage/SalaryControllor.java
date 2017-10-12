@@ -3,17 +3,21 @@ package com.superx.callorder.controller.manage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -34,6 +38,9 @@ import com.superx.callorder.service.SalaryOneService;
 import com.superx.callorder.service.SalaryRecordService;
 import com.superx.callorder.service.SalaryTwoService;
 import com.superx.callorder.service.UserService;
+import com.superx.callorder.util.CommonUtils;
+import com.superx.callorder.util.EncrypDESUtil;
+import com.superx.callorder.util.SendMessageUtil;
 
 /**
  * 工资查询Controller
@@ -57,6 +64,12 @@ public class SalaryControllor extends BaseCommonController {
 	@Autowired
 	private UserService userService; 
 
+	/**
+	 * 跳转验证码页面
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/vercode")
 	public String goVerCode(HttpServletRequest request,Model model) {
 		Integer userId = getUserId(request);
@@ -64,14 +77,33 @@ public class SalaryControllor extends BaseCommonController {
 		if(user.getPhone()!=null && !user.getPhone().equals("")){
 			model.addAttribute("phone", user.getPhone());
 		}
-			
 		return "vercode";
+	}
+	
+	/**
+	 * 生成手机短信验证码给前端验证
+	 * @param request
+	 * @param model
+	 * @param phone
+	 * @return
+	 */
+	@RequestMapping("/code")
+	@ResponseBody
+	public String code(HttpServletRequest request,Model model,String phone) {
+		System.out.println(phone);
+		
+		phone = "tel:"+phone;
+		//String phone = "tel:15210419293;tel:18611453795";
+		//String phone = "tel:18631253aasas795";
+		String code = CommonUtils.getFourRandom();
+		SendMessageUtil.sendMessage(phone, "您此次工资条查询手机验证码为："+code+"，请妥善保管，不要告诉其他人。");
+		return code;
 	}
 
 	@RequestMapping("/view")
 	public String goview(HttpServletRequest request,Model model,String datatime) {
 		
-		System.out.println("dddd'"+datatime);
+		//System.out.println("dddd'"+datatime);
 		
 		if(datatime==null || datatime.equals("")){
 			datatime = new SimpleDateFormat("yyyy-MM").format(Calendar.getInstance().getTime());
@@ -154,7 +186,7 @@ public class SalaryControllor extends BaseCommonController {
 			}
 			
 			HSSFRow hssfTop = hssfSheet.getRow(0);
-			String typeString = getValue(hssfTop.getCell(2));
+			String typeString = getNoValue(hssfTop.getCell(2));
 			if(typeString.trim().equals("薪级工资")){
 				//去重操作，删除当前月份的数据
 				HSSFRow hssfRowCount = hssfSheet.getRow(1);
@@ -297,16 +329,59 @@ public class SalaryControllor extends BaseCommonController {
 		return "/manage/info";
 	}
 
-	// 转换数据格式
-	private String getValue(HSSFCell hssfCell) {
+	/**
+	 * 没有加密
+	 * @param hssfCell
+	 * @return
+	 */
+	private String getNoValue(HSSFCell hssfCell){
+		String returnString = "";
 		if (hssfCell.getCellType() == hssfCell.CELL_TYPE_BOOLEAN) {
-			return String.valueOf(hssfCell.getBooleanCellValue());
+			returnString =  String.valueOf(hssfCell.getBooleanCellValue());
 		} else if (hssfCell.getCellType() == hssfCell.CELL_TYPE_NUMERIC) {
 			DecimalFormat df = new DecimalFormat("######0.00");
-			return df.format(hssfCell.getNumericCellValue());
+			returnString = df.format(hssfCell.getNumericCellValue());
 		} else {
-			return String.valueOf(hssfCell.getStringCellValue());
+			returnString = String.valueOf(hssfCell.getStringCellValue());
 		}
+		return returnString;
+	}
+	
+	// 转换数据格式
+	private String getValue(HSSFCell hssfCell) {
+		String returnString = "";
+		if (hssfCell.getCellType() == hssfCell.CELL_TYPE_BOOLEAN) {
+			returnString =  String.valueOf(hssfCell.getBooleanCellValue());
+		} else if (hssfCell.getCellType() == hssfCell.CELL_TYPE_NUMERIC) {
+			DecimalFormat df = new DecimalFormat("######0.00");
+			returnString = df.format(hssfCell.getNumericCellValue());
+		} else {
+			returnString = String.valueOf(hssfCell.getStringCellValue());
+		}
+		
+		
+		try {
+			EncrypDESUtil de1 = new EncrypDESUtil();
+	        byte[] encontent = de1.Encrytor(returnString);  
+	        returnString = new String(encontent);
+		} catch (NoSuchAlgorithmException c) {
+			// TODO Auto-generated catch block
+			c.printStackTrace();
+		} catch (NoSuchPaddingException c) {
+			// TODO Auto-generated catch block
+			c.printStackTrace();
+		} catch (InvalidKeyException c) {
+			// TODO Auto-generated catch block
+			c.printStackTrace();
+		} catch (IllegalBlockSizeException c) {
+			// TODO Auto-generated catch block
+			c.printStackTrace();
+		} catch (BadPaddingException c) {
+			// TODO Auto-generated catch block
+			c.printStackTrace();
+		}  
+         System.out.println(returnString);
+		return returnString;
 	}
 	
 	

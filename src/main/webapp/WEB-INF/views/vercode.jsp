@@ -51,14 +51,15 @@ margin:0;padding:0;border:none;}
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                                     <form class="form-horizontal" action="/salary/view">
+                                     <form class="form-horizontal" id="codeform" action="/salary/view">
                                       <fieldset>
                                         <legend>手机验证</legend>
                                         <div class="control-group">
                                           <label class="control-label">您的手机号为：</label>
                                           <div class="controls">
                                             <span class="input-xlarge uneditable-input">${phone}</span>
-                                            <button class="btn getCode" onclick="getVercode('${phone}')">获取验证码</button>
+                                            <input type="button" class="btn getCode" id="getCode" value="获取验证码" onclick="getVercode('${phone}')">
+                                          	<input id="randomCode" type="hidden" value="">
                                           </div>
                                         </div>
                                         <div class="control-group">
@@ -68,7 +69,7 @@ margin:0;padding:0;border:none;}
                                           </div>
                                         </div>
                                         <div class="form-actions">
-                                          <button type="submit" class="btn btn-primary">确定</button>
+                                          <button type="submit" class="btn btn-primary" onclick="return check()">确定</button>
                                         </div>
                                       </fieldset>
                                     </form>
@@ -94,36 +95,50 @@ margin:0;padding:0;border:none;}
 	<script src="<%=request.getContextPath()%>/callstatic/bootstrap/js/jquery.bootstrap.newsbox.js"
 		type="text/javascript"></script>
 	<script type="text/javascript">
+	/* 表单提交验证 */
+	function check(){
+		if($("#focusedInput").val()==""){
+			alert("请填写验证码！");
+			return false;
+		}
+		if($("#focusedInput").val()==$("#randomCode").val()){
+			$("#codeform").submit();
+		}else{
+			alert("请填写正确验证码！");
+			return false;
+		}
+		
+	}
+	/*ajax获取后台验证码 */
 	function getVercode(phone){
-		alert(phone);
-		var event = event || window.event;
-	 	event.preventDefault(); // 兼容标准浏览器
-	   	window.event.returnValue = false; // 兼容IE6~8
 	    $.ajax({    
 	           type: 'post',    
-	           url: '/sms/captcha/' + phonel],    
+	           url: '/salary/code?phone=' + phone,    
 	           dataType: "json",    
 	           success: function (data) {    
-	               console.log("sendCaptcha ==> success: data = " + eval(data));    
-	               if (data) {    
-	                   countdown();    
-	                   b_code = false;    
-	               } else {    
-	                   alert("您发送的频率过快!");    
-	               }    
+	               $("#getCode").attr('disabled',true);
+	               $("#randomCode").attr('value',data);
+	               settime(10);
 	           },    
 	           error: function (data) {    
-	               console.log("sendCaptcha ==> error: data = " + eval(data));    
-	               alert("网络超时");    
-	               clearTimeout(t);    
-	               b_code = true;    
-	               var msg = "获取验证码";    
-	               $("#code").text(msg);    
-	               c = 60;    
+	             	    
 	           }    
 	       });    
 	}
-	
+	/*60s计时*/
+	function settime(countdown) {
+		if (countdown == 0) {
+			$("#getCode").attr("value", "获取验证码");
+			$("#getCode").attr('disabled',false);
+			return;
+		} else {
+			$("#getCode").attr("value", "重新发送(" + countdown + ")");
+			countdown--;
+		}
+		setTimeout(function() {
+			settime(countdown)
+		}, 1000)
+	}
 	</script>
 </body>
 
