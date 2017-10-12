@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.superx.callorder.repository.SalaryOneMapper" >
+  <resultMap id="BaseResultMap" type="com.superx.callorder.entity.SalaryOne" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="USERID" property="userid" jdbcType="INTEGER" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="XINJI" property="xinji" jdbcType="VARCHAR" />
+    <result column="GANGWEI" property="gangwei" jdbcType="VARCHAR" />
+    <result column="GONGGAI" property="gonggai" jdbcType="VARCHAR" />
+    <result column="JINTIE" property="jintie" jdbcType="VARCHAR" />
+    <result column="FUDONG" property="fudong" jdbcType="VARCHAR" />
+    <result column="ZHIBU" property="zhibu" jdbcType="VARCHAR" />
+    <result column="DIQU" property="diqu" jdbcType="VARCHAR" />
+    <result column="JIAOBU" property="jiaobu" jdbcType="VARCHAR" />
+    <result column="WEINARU" property="weinaru" jdbcType="VARCHAR" />
+    <result column="TIZU" property="tizu" jdbcType="VARCHAR" />
+    <result column="HUIYINGDU" property="huiyingdu" jdbcType="VARCHAR" />
+    <result column="CAILANZI" property="cailanzi" jdbcType="VARCHAR" />
+    <result column="SHENGHUO" property="shenghuo" jdbcType="VARCHAR" />
+    <result column="TONGXIN" property="tongxin" jdbcType="VARCHAR" />
+    <result column="GUGINGGANGWEI" property="guginggangwei" jdbcType="VARCHAR" />
+    <result column="FUDONGGANGWEI" property="fudonggangwei" jdbcType="VARCHAR" />
+    <result column="WUYEFEI" property="wuyefei" jdbcType="VARCHAR" />
+    <result column="XIANGMUJIXIAO" property="xiangmujixiao" jdbcType="VARCHAR" />
+    <result column="BUFA" property="bufa" jdbcType="VARCHAR" />
+    <result column="YINGFAHEJI" property="yingfaheji" jdbcType="VARCHAR" />
+    <result column="QITA" property="qita" jdbcType="VARCHAR" />
+    <result column="GESHUI" property="geshui" jdbcType="VARCHAR" />
+    <result column="GONGJIJIN" property="gongjijin" jdbcType="VARCHAR" />
+    <result column="YANGLAO" property="yanglao" jdbcType="VARCHAR" />
+    <result column="SHIYE" property="shiye" jdbcType="VARCHAR" />
+    <result column="YUKOU" property="yukou" jdbcType="VARCHAR" />
+    <result column="SHIFAHEJI" property="shifaheji" jdbcType="VARCHAR" />
+    <result column="COUNT" property="count" jdbcType="VARCHAR" />
+    <result column="NIANYUE" property="nianyue" jdbcType="VARCHAR" />
+    <result column="CTRATETIME" property="ctratetime" jdbcType="TIMESTAMP" />
+    <result column="CTRATOR" property="ctrator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USERID, DEPARTMENT, NAME, XINJI, GANGWEI, GONGGAI, JINTIE, FUDONG, ZHIBU, DIQU, 
+    JIAOBU, WEINARU, TIZU, HUIYINGDU, CAILANZI, SHENGHUO, TONGXIN, GUGINGGANGWEI, FUDONGGANGWEI, 
+    WUYEFEI, XIANGMUJIXIAO, BUFA, YINGFAHEJI, QITA, GESHUI, GONGJIJIN, YANGLAO, SHIYE, 
+    YUKOU, SHIFAHEJI, COUNT, NIANYUE, CTRATETIME, CTRATOR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_salaryone
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_salaryone
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.superx.callorder.entity.SalaryOne" >
+    insert into t_salaryone (ID, USERID, DEPARTMENT, 
+      NAME, XINJI, GANGWEI, 
+      GONGGAI, JINTIE, FUDONG, 
+      ZHIBU, DIQU, JIAOBU, 
+      WEINARU, TIZU, HUIYINGDU, 
+      CAILANZI, SHENGHUO, TONGXIN, 
+      GUGINGGANGWEI, FUDONGGANGWEI, WUYEFEI, 
+      XIANGMUJIXIAO, BUFA, YINGFAHEJI, 
+      QITA, GESHUI, GONGJIJIN, 
+      YANGLAO, SHIYE, YUKOU, 
+      SHIFAHEJI, COUNT, NIANYUE, 
+      CTRATETIME, CTRATOR)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{xinji,jdbcType=VARCHAR}, #{gangwei,jdbcType=VARCHAR}, 
+      #{gonggai,jdbcType=VARCHAR}, #{jintie,jdbcType=VARCHAR}, #{fudong,jdbcType=VARCHAR}, 
+      #{zhibu,jdbcType=VARCHAR}, #{diqu,jdbcType=VARCHAR}, #{jiaobu,jdbcType=VARCHAR}, 
+      #{weinaru,jdbcType=VARCHAR}, #{tizu,jdbcType=VARCHAR}, #{huiyingdu,jdbcType=VARCHAR}, 
+      #{cailanzi,jdbcType=VARCHAR}, #{shenghuo,jdbcType=VARCHAR}, #{tongxin,jdbcType=VARCHAR}, 
+      #{guginggangwei,jdbcType=VARCHAR}, #{fudonggangwei,jdbcType=VARCHAR}, #{wuyefei,jdbcType=VARCHAR}, 
+      #{xiangmujixiao,jdbcType=VARCHAR}, #{bufa,jdbcType=VARCHAR}, #{yingfaheji,jdbcType=VARCHAR}, 
+      #{qita,jdbcType=VARCHAR}, #{geshui,jdbcType=VARCHAR}, #{gongjijin,jdbcType=VARCHAR}, 
+      #{yanglao,jdbcType=VARCHAR}, #{shiye,jdbcType=VARCHAR}, #{yukou,jdbcType=VARCHAR}, 
+      #{shifaheji,jdbcType=VARCHAR}, #{count,jdbcType=VARCHAR}, #{nianyue,jdbcType=VARCHAR}, 
+      #{ctratetime,jdbcType=TIMESTAMP}, #{ctrator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.superx.callorder.entity.SalaryOne" >
+    insert into t_salaryone
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="department != null" >
+        DEPARTMENT,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="xinji != null" >
+        XINJI,
+      </if>
+      <if test="gangwei != null" >
+        GANGWEI,
+      </if>
+      <if test="gonggai != null" >
+        GONGGAI,
+      </if>
+      <if test="jintie != null" >
+        JINTIE,
+      </if>
+      <if test="fudong != null" >
+        FUDONG,
+      </if>
+      <if test="zhibu != null" >
+        ZHIBU,
+      </if>
+      <if test="diqu != null" >
+        DIQU,
+      </if>
+      <if test="jiaobu != null" >
+        JIAOBU,
+      </if>
+      <if test="weinaru != null" >
+        WEINARU,
+      </if>
+      <if test="tizu != null" >
+        TIZU,
+      </if>
+      <if test="huiyingdu != null" >
+        HUIYINGDU,
+      </if>
+      <if test="cailanzi != null" >
+        CAILANZI,
+      </if>
+      <if test="shenghuo != null" >
+        SHENGHUO,
+      </if>
+      <if test="tongxin != null" >
+        TONGXIN,
+      </if>
+      <if test="guginggangwei != null" >
+        GUGINGGANGWEI,
+      </if>
+      <if test="fudonggangwei != null" >
+        FUDONGGANGWEI,
+      </if>
+      <if test="wuyefei != null" >
+        WUYEFEI,
+      </if>
+      <if test="xiangmujixiao != null" >
+        XIANGMUJIXIAO,
+      </if>
+      <if test="bufa != null" >
+        BUFA,
+      </if>
+      <if test="yingfaheji != null" >
+        YINGFAHEJI,
+      </if>
+      <if test="qita != null" >
+        QITA,
+      </if>
+      <if test="geshui != null" >
+        GESHUI,
+      </if>
+      <if test="gongjijin != null" >
+        GONGJIJIN,
+      </if>
+      <if test="yanglao != null" >
+        YANGLAO,
+      </if>
+      <if test="shiye != null" >
+        SHIYE,
+      </if>
+      <if test="yukou != null" >
+        YUKOU,
+      </if>
+      <if test="shifaheji != null" >
+        SHIFAHEJI,
+      </if>
+      <if test="count != null" >
+        COUNT,
+      </if>
+      <if test="nianyue != null" >
+        NIANYUE,
+      </if>
+      <if test="ctratetime != null" >
+        CTRATETIME,
+      </if>
+      <if test="ctrator != null" >
+        CTRATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="xinji != null" >
+        #{xinji,jdbcType=VARCHAR},
+      </if>
+      <if test="gangwei != null" >
+        #{gangwei,jdbcType=VARCHAR},
+      </if>
+      <if test="gonggai != null" >
+        #{gonggai,jdbcType=VARCHAR},
+      </if>
+      <if test="jintie != null" >
+        #{jintie,jdbcType=VARCHAR},
+      </if>
+      <if test="fudong != null" >
+        #{fudong,jdbcType=VARCHAR},
+      </if>
+      <if test="zhibu != null" >
+        #{zhibu,jdbcType=VARCHAR},
+      </if>
+      <if test="diqu != null" >
+        #{diqu,jdbcType=VARCHAR},
+      </if>
+      <if test="jiaobu != null" >
+        #{jiaobu,jdbcType=VARCHAR},
+      </if>
+      <if test="weinaru != null" >
+        #{weinaru,jdbcType=VARCHAR},
+      </if>
+      <if test="tizu != null" >
+        #{tizu,jdbcType=VARCHAR},
+      </if>
+      <if test="huiyingdu != null" >
+        #{huiyingdu,jdbcType=VARCHAR},
+      </if>
+      <if test="cailanzi != null" >
+        #{cailanzi,jdbcType=VARCHAR},
+      </if>
+      <if test="shenghuo != null" >
+        #{shenghuo,jdbcType=VARCHAR},
+      </if>
+      <if test="tongxin != null" >
+        #{tongxin,jdbcType=VARCHAR},
+      </if>
+      <if test="guginggangwei != null" >
+        #{guginggangwei,jdbcType=VARCHAR},
+      </if>
+      <if test="fudonggangwei != null" >
+        #{fudonggangwei,jdbcType=VARCHAR},
+      </if>
+      <if test="wuyefei != null" >
+        #{wuyefei,jdbcType=VARCHAR},
+      </if>
+      <if test="xiangmujixiao != null" >
+        #{xiangmujixiao,jdbcType=VARCHAR},
+      </if>
+      <if test="bufa != null" >
+        #{bufa,jdbcType=VARCHAR},
+      </if>
+      <if test="yingfaheji != null" >
+        #{yingfaheji,jdbcType=VARCHAR},
+      </if>
+      <if test="qita != null" >
+        #{qita,jdbcType=VARCHAR},
+      </if>
+      <if test="geshui != null" >
+        #{geshui,jdbcType=VARCHAR},
+      </if>
+      <if test="gongjijin != null" >
+        #{gongjijin,jdbcType=VARCHAR},
+      </if>
+      <if test="yanglao != null" >
+        #{yanglao,jdbcType=VARCHAR},
+      </if>
+      <if test="shiye != null" >
+        #{shiye,jdbcType=VARCHAR},
+      </if>
+      <if test="yukou != null" >
+        #{yukou,jdbcType=VARCHAR},
+      </if>
+      <if test="shifaheji != null" >
+        #{shifaheji,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=VARCHAR},
+      </if>
+      <if test="nianyue != null" >
+        #{nianyue,jdbcType=VARCHAR},
+      </if>
+      <if test="ctratetime != null" >
+        #{ctratetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ctrator != null" >
+        #{ctrator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.superx.callorder.entity.SalaryOne" >
+    update t_salaryone
+    <set >
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="xinji != null" >
+        XINJI = #{xinji,jdbcType=VARCHAR},
+      </if>
+      <if test="gangwei != null" >
+        GANGWEI = #{gangwei,jdbcType=VARCHAR},
+      </if>
+      <if test="gonggai != null" >
+        GONGGAI = #{gonggai,jdbcType=VARCHAR},
+      </if>
+      <if test="jintie != null" >
+        JINTIE = #{jintie,jdbcType=VARCHAR},
+      </if>
+      <if test="fudong != null" >
+        FUDONG = #{fudong,jdbcType=VARCHAR},
+      </if>
+      <if test="zhibu != null" >
+        ZHIBU = #{zhibu,jdbcType=VARCHAR},
+      </if>
+      <if test="diqu != null" >
+        DIQU = #{diqu,jdbcType=VARCHAR},
+      </if>
+      <if test="jiaobu != null" >
+        JIAOBU = #{jiaobu,jdbcType=VARCHAR},
+      </if>
+      <if test="weinaru != null" >
+        WEINARU = #{weinaru,jdbcType=VARCHAR},
+      </if>
+      <if test="tizu != null" >
+        TIZU = #{tizu,jdbcType=VARCHAR},
+      </if>
+      <if test="huiyingdu != null" >
+        HUIYINGDU = #{huiyingdu,jdbcType=VARCHAR},
+      </if>
+      <if test="cailanzi != null" >
+        CAILANZI = #{cailanzi,jdbcType=VARCHAR},
+      </if>
+      <if test="shenghuo != null" >
+        SHENGHUO = #{shenghuo,jdbcType=VARCHAR},
+      </if>
+      <if test="tongxin != null" >
+        TONGXIN = #{tongxin,jdbcType=VARCHAR},
+      </if>
+      <if test="guginggangwei != null" >
+        GUGINGGANGWEI = #{guginggangwei,jdbcType=VARCHAR},
+      </if>
+      <if test="fudonggangwei != null" >
+        FUDONGGANGWEI = #{fudonggangwei,jdbcType=VARCHAR},
+      </if>
+      <if test="wuyefei != null" >
+        WUYEFEI = #{wuyefei,jdbcType=VARCHAR},
+      </if>
+      <if test="xiangmujixiao != null" >
+        XIANGMUJIXIAO = #{xiangmujixiao,jdbcType=VARCHAR},
+      </if>
+      <if test="bufa != null" >
+        BUFA = #{bufa,jdbcType=VARCHAR},
+      </if>
+      <if test="yingfaheji != null" >
+        YINGFAHEJI = #{yingfaheji,jdbcType=VARCHAR},
+      </if>
+      <if test="qita != null" >
+        QITA = #{qita,jdbcType=VARCHAR},
+      </if>
+      <if test="geshui != null" >
+        GESHUI = #{geshui,jdbcType=VARCHAR},
+      </if>
+      <if test="gongjijin != null" >
+        GONGJIJIN = #{gongjijin,jdbcType=VARCHAR},
+      </if>
+      <if test="yanglao != null" >
+        YANGLAO = #{yanglao,jdbcType=VARCHAR},
+      </if>
+      <if test="shiye != null" >
+        SHIYE = #{shiye,jdbcType=VARCHAR},
+      </if>
+      <if test="yukou != null" >
+        YUKOU = #{yukou,jdbcType=VARCHAR},
+      </if>
+      <if test="shifaheji != null" >
+        SHIFAHEJI = #{shifaheji,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        COUNT = #{count,jdbcType=VARCHAR},
+      </if>
+      <if test="nianyue != null" >
+        NIANYUE = #{nianyue,jdbcType=VARCHAR},
+      </if>
+      <if test="ctratetime != null" >
+        CTRATETIME = #{ctratetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ctrator != null" >
+        CTRATOR = #{ctrator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.superx.callorder.entity.SalaryOne" >
+    update t_salaryone
+    set USERID = #{userid,jdbcType=INTEGER},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      XINJI = #{xinji,jdbcType=VARCHAR},
+      GANGWEI = #{gangwei,jdbcType=VARCHAR},
+      GONGGAI = #{gonggai,jdbcType=VARCHAR},
+      JINTIE = #{jintie,jdbcType=VARCHAR},
+      FUDONG = #{fudong,jdbcType=VARCHAR},
+      ZHIBU = #{zhibu,jdbcType=VARCHAR},
+      DIQU = #{diqu,jdbcType=VARCHAR},
+      JIAOBU = #{jiaobu,jdbcType=VARCHAR},
+      WEINARU = #{weinaru,jdbcType=VARCHAR},
+      TIZU = #{tizu,jdbcType=VARCHAR},
+      HUIYINGDU = #{huiyingdu,jdbcType=VARCHAR},
+      CAILANZI = #{cailanzi,jdbcType=VARCHAR},
+      SHENGHUO = #{shenghuo,jdbcType=VARCHAR},
+      TONGXIN = #{tongxin,jdbcType=VARCHAR},
+      GUGINGGANGWEI = #{guginggangwei,jdbcType=VARCHAR},
+      FUDONGGANGWEI = #{fudonggangwei,jdbcType=VARCHAR},
+      WUYEFEI = #{wuyefei,jdbcType=VARCHAR},
+      XIANGMUJIXIAO = #{xiangmujixiao,jdbcType=VARCHAR},
+      BUFA = #{bufa,jdbcType=VARCHAR},
+      YINGFAHEJI = #{yingfaheji,jdbcType=VARCHAR},
+      QITA = #{qita,jdbcType=VARCHAR},
+      GESHUI = #{geshui,jdbcType=VARCHAR},
+      GONGJIJIN = #{gongjijin,jdbcType=VARCHAR},
+      YANGLAO = #{yanglao,jdbcType=VARCHAR},
+      SHIYE = #{shiye,jdbcType=VARCHAR},
+      YUKOU = #{yukou,jdbcType=VARCHAR},
+      SHIFAHEJI = #{shifaheji,jdbcType=VARCHAR},
+      COUNT = #{count,jdbcType=VARCHAR},
+      NIANYUE = #{nianyue,jdbcType=VARCHAR},
+      CTRATETIME = #{ctratetime,jdbcType=TIMESTAMP},
+      CTRATOR = #{ctrator,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <delete id="deletByCount" parameterType="java.lang.String" >
+    delete from t_salaryone
+    where COUNT = #{count,jdbcType=VARCHAR}
+  </delete>
+  
+    <select id="selectOneList" resultMap="BaseResultMap"  parameterType="com.superx.callorder.entity.SalaryOne">
+   	    select 
+    <include refid="Base_Column_List" />
+    from t_salaryone
+	    <where>
+	         <if test="name != null">
+	            AND NAME = #{name,jdbcType=INTEGER}
+	        </if>
+	        <if test="department != null">
+	            AND DEPARTMENT = #{department,jdbcType=VARCHAR}
+	        </if>
+	        <if test="nianyue != null">
+	            AND NIANYUE = #{nianyue,jdbcType=VARCHAR}
+	        </if>
+	    </where>
+   	</select>
+</mapper>
