@@ -25,6 +25,11 @@ public class BaseCommonController {
 	public String getDictValueByCode(String code){
 		return dictionaryService.getDictvalueByCode(code);
 	}
+	
+	public void maxtime(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(60*30);//单位为秒
+	}
 	/**
 	 * json跨域输出内容
 	 */

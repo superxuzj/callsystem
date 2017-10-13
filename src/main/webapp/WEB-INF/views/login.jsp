@@ -4,7 +4,7 @@
 <%@ page contentType="text/html; charset=UTF-8"  %>
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>搜救中心财务报销预约系统</title>
+<title>搜救中心财务综合服务平台</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <!--[if lt IE 9]>
 <script src="<%=request.getContextPath()%>/callstatic/vendors/html5shiv.min.js"></script> 

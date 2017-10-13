@@ -54,6 +54,9 @@ public class LoginController extends BaseCommonController{
 		loginInfo.setName(usermodel.getName());
 		loginInfo.setUsername(usermodel.getPhone());
 		loginInfoService.insertSelective(loginInfo);
+		if(usermodel.getPassword().equals("111111")){
+			return "redirect:/changepwd?id="+usermodel.getId()+"&change=1";
+		}
 		if(usermodel.getType()!=null && usermodel.getType().equals("5")){
 			return "redirect:/manage";
 		}else if(usermodel.getType()!=null && usermodel.getType().equals("4")){
@@ -130,7 +133,12 @@ public class LoginController extends BaseCommonController{
   	
   	@RequestMapping("/changepwd")
 	public String changepassword(HttpServletRequest request, 
-  			HttpServletResponse response,Integer id,Model model){
+  			HttpServletResponse response,Integer id,Model model,String change){
+  		if(change==null || change.equals("")){
+  			
+  		}else{
+  			model.addAttribute("change", "--为了确保你的账户，请您修改初始密码。");
+  		}
   		User user = userService.selectByPrimaryKey(id);
   		model.addAttribute("user", user);
 		return "changepwd";

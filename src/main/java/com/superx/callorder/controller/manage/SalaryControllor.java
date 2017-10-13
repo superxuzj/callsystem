@@ -3,17 +3,13 @@ package com.superx.callorder.controller.manage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,7 +35,7 @@ import com.superx.callorder.service.SalaryRecordService;
 import com.superx.callorder.service.SalaryTwoService;
 import com.superx.callorder.service.UserService;
 import com.superx.callorder.util.CommonUtils;
-import com.superx.callorder.util.EncrypDESUtil;
+import com.superx.callorder.util.DesUtils;
 import com.superx.callorder.util.SendMessageUtil;
 
 /**
@@ -90,16 +86,20 @@ public class SalaryControllor extends BaseCommonController {
 	@RequestMapping("/code")
 	@ResponseBody
 	public String code(HttpServletRequest request,Model model,String phone) {
-		System.out.println(phone);
 		
 		phone = "tel:"+phone;
-		//String phone = "tel:15210419293;tel:18611453795";
-		//String phone = "tel:18631253aasas795";
 		String code = CommonUtils.getFourRandom();
 		SendMessageUtil.sendMessage(phone, "您此次工资条查询手机验证码为："+code+"，请妥善保管，不要告诉其他人。");
 		return code;
 	}
 
+	/**
+	 * 查看个人工资条
+	 * @param request
+	 * @param model
+	 * @param datatime
+	 * @return
+	 */
 	@RequestMapping("/view")
 	public String goview(HttpServletRequest request,Model model,String datatime) {
 		
@@ -115,20 +115,69 @@ public class SalaryControllor extends BaseCommonController {
 		recordOne.setDepartment(user.getDepartment());
 		recordOne.setNianyue(datatime);
 		List<SalaryOne> list1 = salaryOneService.selectOneList(recordOne);
+		SalaryOne salaryOne = new SalaryOne();
 		if(list1!=null && list1.size()>0){
-			SalaryOne salaryOne = list1.get(0);
-			model.addAttribute("salaryOne", salaryOne);
+			salaryOne = list1.get(0);
+			salaryOne.setXinji(getDecrypt(salaryOne.getXinji()));
+			salaryOne.setGangwei(getDecrypt(salaryOne.getGangwei()));
+			salaryOne.setGonggai(getDecrypt(salaryOne.getGonggai()));
+			salaryOne.setJintie(getDecrypt(salaryOne.getJintie()));
+			salaryOne.setFudong(getDecrypt(salaryOne.getFudong()));
+			salaryOne.setZhibu(getDecrypt(salaryOne.getZhibu()));
+			salaryOne.setDiqu(getDecrypt(salaryOne.getDiqu()));
+			salaryOne.setJiaobu(getDecrypt(salaryOne.getJiaobu()));
+			salaryOne.setWeinaru(getDecrypt(salaryOne.getWeinaru()));
+			salaryOne.setTizu(getDecrypt(salaryOne.getTizu()));
+			salaryOne.setHuiyingdu(getDecrypt(salaryOne.getHuiyingdu()));
+			salaryOne.setCailanzi(getDecrypt(salaryOne.getCailanzi()));
+			salaryOne.setShenghuo(getDecrypt(salaryOne.getShenghuo()));
+			salaryOne.setTongxin(getDecrypt(salaryOne.getTongxin()));
+			salaryOne.setGuginggangwei(getDecrypt(salaryOne.getGuginggangwei()));
+			salaryOne.setFudonggangwei(getDecrypt(salaryOne.getFudonggangwei()));
+			salaryOne.setWuyefei(getDecrypt(salaryOne.getWuyefei()));
+			salaryOne.setXiangmujixiao(getDecrypt(salaryOne.getXiangmujixiao()));
+			salaryOne.setBufa(getDecrypt(salaryOne.getBufa()));
+			salaryOne.setYingfaheji(getDecrypt(salaryOne.getYingfaheji()));
+			salaryOne.setQita(getDecrypt(salaryOne.getQita()));
+			salaryOne.setGeshui(getDecrypt(salaryOne.getGeshui()));
+			salaryOne.setGongjijin(getDecrypt(salaryOne.getGongjijin()));
+			salaryOne.setYanglao(getDecrypt(salaryOne.getYanglao()));
+			salaryOne.setShiye(getDecrypt(salaryOne.getShiye()));
+			salaryOne.setYukou(getDecrypt(salaryOne.getYukou()));
+			salaryOne.setShifaheji(getDecrypt(salaryOne.getShifaheji()));
 		}
+		
 		
 		SalaryTwo recordTwo = new SalaryTwo();
 		recordTwo.setName(user.getName());
 		recordTwo.setDepartment(user.getDepartment());
 		recordTwo.setNianyue(datatime);
 		List<SalaryTwo> list2 = salaryTwoService.selectTwoList(recordTwo);
+		SalaryTwo salaryTwo = new SalaryTwo();
 		if(list2!=null && list2.size()>0){
-			SalaryTwo salaryTwo = list2.get(0);
-			model.addAttribute("salaryTwo", salaryTwo);
+			salaryTwo = list2.get(0);
+			salaryTwo.setBianji(getDecrypt(salaryTwo.getBianji()));
+			salaryTwo.setZhiban(getDecrypt(salaryTwo.getZhiban()));
+			salaryTwo.setJiangke(getDecrypt(salaryTwo.getJiangke()));
+			salaryTwo.setChuche(getDecrypt(salaryTwo.getChuche()));
+			salaryTwo.setYingfaheji(getDecrypt(salaryTwo.getYingfaheji()));
+			salaryTwo.setGeshui(getDecrypt(salaryTwo.getGeshui()));
+			salaryTwo.setShifaheji(getDecrypt(salaryTwo.getShifaheji()));
+			
 		}
+		model.addAttribute("salaryTwo", salaryTwo);
+		String sb1 = salaryOne.getShifaheji();
+		String sb2 = salaryTwo.getShifaheji();
+		if(salaryOne.getShifaheji()==null ||salaryOne.getShifaheji().equals("")){
+			sb1 = "0";
+		}
+		if(salaryTwo.getShifaheji()==null ||salaryTwo.getShifaheji().equals("")){
+			sb2 = "0";
+		}
+		BigDecimal b1 = new BigDecimal(sb1);  
+        BigDecimal b2 = new BigDecimal(sb2);
+        salaryOne.setHeji(b1.add(b2).toString());
+        model.addAttribute("salaryOne", salaryOne);
 		model.addAttribute("datatime", datatime);
 		return "view";
 	}
@@ -166,7 +215,14 @@ public class SalaryControllor extends BaseCommonController {
 	public String manage() {
 		return "/manage/salaryManage";
 	}
-
+	/**
+	 * 上传
+	 * @param request
+	 * @param response
+	 * @param file
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/uploadfile")
 	public String uploadfile(HttpServletRequest request,
 			HttpServletResponse response,
@@ -198,12 +254,12 @@ public class SalaryControllor extends BaseCommonController {
 					if (hssfRow != null) {
 						SalaryOne salaryOne = new SalaryOne();
 						HSSFCell department = hssfRow.getCell(0);
-						salaryOne.setDepartment(getValue(department));
+						salaryOne.setDepartment(getNoValue(department));
 						HSSFCell name = hssfRow.getCell(1);
-						if (getValue(name).trim().equals("")) {
+						if (getNoValue(name).trim().equals("")) {
 							continue;
 						}
-						salaryOne.setName(getValue(name));
+						salaryOne.setName(getNoValue(name));
 						HSSFCell xinji = hssfRow.getCell(2);
 						salaryOne.setXinji(getValue(xinji));
 						HSSFCell gangwei = hssfRow.getCell(3);
@@ -260,8 +316,13 @@ public class SalaryControllor extends BaseCommonController {
 						salaryOne.setShifaheji(getValue(shifaheji));
 						HSSFCell count = hssfRow.getCell(29);
 						salaryOne.setCount(getCount(count));
-						String d=new SimpleDateFormat("yyyy-MM").format(Calendar.getInstance().getTime());
-						salaryOne.setNianyue(d);
+						String year =new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime());
+						String month = getCount(count);
+						if(month.length()==1){
+							month = 0+month;
+
+						}
+						salaryOne.setNianyue(year+"-"+month);
 						salaryOne.setCtratetime(new Date());
 						salaryOne.setCtrator("admin");
 						ncount++;
@@ -279,12 +340,12 @@ public class SalaryControllor extends BaseCommonController {
 					if (hssfRow != null) {
 						SalaryTwo salaryTwo = new SalaryTwo();
 						HSSFCell department = hssfRow.getCell(0);
-						salaryTwo.setDepartment(getValue(department));
+						salaryTwo.setDepartment(getNoValue(department));
 						HSSFCell name = hssfRow.getCell(1);
-						if (getValue(name).trim().equals("")) {
+						if (getNoValue(name).trim().equals("")) {
 							continue;
 						}
-						salaryTwo.setName(getValue(name));
+						salaryTwo.setName(getNoValue(name));
 						HSSFCell bianji = hssfRow.getCell(2);
 						salaryTwo.setBianji(getValue(bianji));
 						HSSFCell zhiban = hssfRow.getCell(3);
@@ -302,8 +363,13 @@ public class SalaryControllor extends BaseCommonController {
 						HSSFCell count = hssfRow.getCell(9);
 						salaryTwo.setCount(getCount(count));
 						//年月
-						String d=new SimpleDateFormat("yyyy-MM").format(Calendar.getInstance().getTime());
-						salaryTwo.setNianyue(d);
+						String year =new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime());
+						String month = getCount(count);
+						if(month.length()==1){
+							month = 0+month;
+
+						}
+						salaryTwo.setNianyue(year+"-"+month);
 						salaryTwo.setCtratetime(new Date());
 						salaryTwo.setCtrator("admin");
 						ncount++;
@@ -359,28 +425,13 @@ public class SalaryControllor extends BaseCommonController {
 			returnString = String.valueOf(hssfCell.getStringCellValue());
 		}
 		
-		
 		try {
-			EncrypDESUtil de1 = new EncrypDESUtil();
-	        byte[] encontent = de1.Encrytor(returnString);  
-	        returnString = new String(encontent);
-		} catch (NoSuchAlgorithmException c) {
+			DesUtils des = new DesUtils();
+			returnString = des.encrypt(returnString);
+		} catch (Exception c) {
 			// TODO Auto-generated catch block
 			c.printStackTrace();
-		} catch (NoSuchPaddingException c) {
-			// TODO Auto-generated catch block
-			c.printStackTrace();
-		} catch (InvalidKeyException c) {
-			// TODO Auto-generated catch block
-			c.printStackTrace();
-		} catch (IllegalBlockSizeException c) {
-			// TODO Auto-generated catch block
-			c.printStackTrace();
-		} catch (BadPaddingException c) {
-			// TODO Auto-generated catch block
-			c.printStackTrace();
-		}  
-         System.out.println(returnString);
+		}
 		return returnString;
 	}
 	
@@ -390,5 +441,25 @@ public class SalaryControllor extends BaseCommonController {
 	private String getCount(HSSFCell hssfCell) {
 		DecimalFormat df = new DecimalFormat("######0");
 		return df.format(hssfCell.getNumericCellValue());
+	}
+	
+	/**
+	 * 获取解密后的字符串
+	 * @param sr
+	 * @return
+	 */
+	private String getDecrypt(String sr){
+		if(sr==null || sr.equals("")){
+			return sr;
+		}
+		String str = sr;
+		try {
+			DesUtils des = new DesUtils();
+			str = des.decrypt(sr);
+		} catch (Exception c) {
+			// TODO Auto-generated catch block
+			c.printStackTrace();
+		}
+		return str;
 	}
 }

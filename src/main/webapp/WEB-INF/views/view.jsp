@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <%@ page contentType="text/html; charset=UTF-8"%>
 <head>
-<title>搜救中心财务报销预约系统</title>
+<title>搜救中心财务综合服务平台</title>
 <!-- Bootstrap -->
 <link
 	href="<%=request.getContextPath()%>/callstatic/bootstrap/css/bootstrap.min.css"
@@ -109,7 +109,7 @@ table {
 															<th>工改保留</th>
 															<th>津贴</th>
 															<th>浮动工资</th>
-															<th>职补</th>
+															<th></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -121,7 +121,7 @@ table {
 															<td>${salaryOne.gonggai }</td>
 															<td>${salaryOne.jintie }</td>
 															<td>${salaryOne.fudong }</td>
-															<td>${salaryOne.zhibu }</td>
+															<td></td>
 														</tr>
 													</tbody>
 
@@ -134,7 +134,7 @@ table {
 															<th>回婴独</th>
 															<th>菜蓝子</th>
 															<th>生活补贴</th>
-															<th>通信补贴</th>
+															<th></th>
 
 														</tr>
 													</thead>
@@ -147,7 +147,7 @@ table {
 															<td>${salaryOne.huiyingdu }</td>
 															<td>${salaryOne.cailanzi }</td>
 															<td>${salaryOne.shenghuo }</td>
-															<td>${salaryOne.tongxin }</td>
+															<td></td>
 														</tr>
 													</tbody>
 													<thead>
@@ -159,7 +159,7 @@ table {
 															<th>补发</th>
 															<th>应发工资合计</th>
 															<th>其他</th>
-															<th>个税</th>
+															<th></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -171,7 +171,7 @@ table {
 															<td>${salaryOne.bufa }</td>
 															<td>${salaryOne.yingfaheji }</td>
 															<td>${salaryOne.qita }</td>
-															<td>${salaryOne.geshui }</td>
+															<td></td>
 														</tr>
 													</tbody>
 
@@ -181,9 +181,9 @@ table {
 															<th>养老保险</th>
 															<th>失业保险</th>
 															<th>预扣养老金</th>
-															<th></th>
-															<th></th>
-															<th></th>
+															<th>职补</th>
+															<th>通信补贴</th>
+															<th>个税</th>
 															<th>实发工资合计</th>
 														</tr>
 													</thead>
@@ -193,9 +193,9 @@ table {
 															<td>${salaryOne.yanglao }</td>
 															<td>${salaryOne.shiye }</td>
 															<td>${salaryOne.yukou }</td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td>${salaryOne.zhibu }</td>
+															<td>${salaryOne.tongxin }</td>
+															<td>${salaryOne.geshui }</td>
 															<td>${salaryOne.shifaheji }</td>
 
 														</tr>
@@ -227,6 +227,31 @@ table {
 														</tr>
 													</tbody>
 
+<thead>
+														<tr>
+															<th></th>
+															<th></th>
+															<th></th>
+															<th></th>
+															<th></th>
+															<th></th>
+															<th></th>
+															<th>合计</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="bottombor">
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td>${salaryOne.heji }</td>
+
+														</tr>
+													</tbody>
 												</table>
 												<button class="btn btn-primary export" onclick="exportSalary('${datatime}')"> 导出</button>
 											</div>

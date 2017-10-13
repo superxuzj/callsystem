@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,9 @@ public class CenterOrderControllor extends BaseCommonController{
 	@RequestMapping("")
 	public String index(HttpServletRequest request, 
   			HttpServletResponse response,Model model,Business record){
+		
+		maxtime(request);
+		
 		List<Business> businessList = businessService.selectBusinessList(record);
 		Business hBusiness = businessList.get(0);
 		Business zBusiness = businessList.get(1);

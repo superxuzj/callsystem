@@ -12,7 +12,7 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span> </a> <a
-					class="brand" href="#">搜救中心财务报销预约系统</a>
+					class="brand" href="#">搜救中心财务综合服务平台</a>
 					<a class="brand" href="#" ></a>
 				 <a class="brand" href="#" ><span id="timeshow"></span></a>
 					

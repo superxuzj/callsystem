@@ -4,7 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 <%@ page contentType="text/html; charset=UTF-8"  %>
 <head>
-<title>搜救中心财务报销预约系统</title>
+<title>搜救中心财务综合服务平台</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <!-- Bootstrap -->
 <link href="<%=request.getContextPath()%>/callstatic/bootstrap/css/bootstrap.min.css" rel="stylesheet"

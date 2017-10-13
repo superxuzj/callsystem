@@ -4,7 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 <%@ page contentType="text/html; charset=UTF-8"  %>
 <head>
-<title>搜救中心财务报销预约系统</title>
+<title>搜救中心财务综合服务平台</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <!-- Bootstrap -->
 <link href="<%=request.getContextPath()%>/callstatic/bootstrap/css/bootstrap.min.css" rel="stylesheet"
@@ -51,7 +51,7 @@ margin-bottom:15px;
                              <form class="form-horizontal" action="<%=request.getContextPath()%>/savechange"  method="post" id="savechangeForm">
                              <input  name="id" type="hidden" value="${user.id  }">
                               <fieldset>
-                                <legend>修改信息</legend>
+                                <legend>修改信息${change}</legend>
                                 <div class="control-group">
                                   <label class="control-label" for="focusedInput">姓名</label>
                                   <div class="controls">
@@ -130,7 +130,16 @@ margin-bottom:15px;
 		}
 		
 		if($("#newpwd1").val()=="" && $("#newpwd2").val()==""){
-			$("#savechangeForm").submit();
+			alert("请输入新密码！");
+			return;
+		}
+		if($("#newpwd1").val().length <6 && $("#newpwd2").val().length<6){
+			alert("密码最少为6位！");
+			return;
+		}	
+		if($("#newpwd1").val()=="111111" || $("#newpwd2").val()=="111111"){
+			alert("修改密码不能为初始密码！");
+			return;
 		}
 		
 		if($("#newpwd1").val()!="" && $("#newpwd2").val()!=""){

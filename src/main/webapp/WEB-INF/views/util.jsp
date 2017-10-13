@@ -3,7 +3,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 <%@ page contentType="text/html; charset=UTF-8"  %>
 <head>
-<title>搜救中心财务报销预约系统</title>
+<title>搜救中心财务综合服务平台</title>
 <!-- Bootstrap -->
 <link href="/callstatic/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	media="screen">
@@ -39,7 +39,7 @@ margin-bottom:15px;
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span> </a> <a
-					class="brand" href="#">搜救中心财务报销预约系统</a>
+					class="brand" href="#">搜救中心财务综合服务平台</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav pull-right">
 						<li class="dropdown"><a href="#" role="button"

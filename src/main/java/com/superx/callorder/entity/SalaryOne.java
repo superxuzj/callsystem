@@ -72,6 +72,8 @@ public class SalaryOne {
     private Date ctratetime;
 
     private String ctrator;
+    
+    private String heji;
 
     public Integer getId() {
         return id;
@@ -352,4 +354,12 @@ public class SalaryOne {
     public void setCtrator(String ctrator) {
         this.ctrator = ctrator == null ? null : ctrator.trim();
     }
+
+	public String getHeji() {
+		return heji;
+	}
+
+	public void setHeji(String heji) {
+		this.heji = heji;
+	}
 }

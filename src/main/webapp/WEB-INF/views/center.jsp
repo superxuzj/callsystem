@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <%@ page contentType="text/html; charset=UTF-8"  %>
 <head>
-<title>搜救中心财务报销预约系统</title>
+<title>搜救中心财务综合服务平台</title>
 <!-- Bootstrap -->
 <link href="<%=request.getContextPath()%>/callstatic/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	media="screen">
@@ -37,13 +37,14 @@ padding-bottom:0px;
 margin:0;padding:0;border:none;}
 select,input,img{vertical-align:middle;}
 fieldset,img{border:0;}
-.main{ position:absolute;left:50%; top:43%; background:url(<%=request.getContextPath()%>/callstatic/images/bg2.png) no-repeat; width:850px; height:640px; margin:-234px 0 0 -386px;}
+.main{ position:absolute;left:50%; top:47%; background:url(<%=request.getContextPath()%>/callstatic/images/bg3.png) no-repeat; width:850px; height:540px; margin:-234px 0 0 -386px;}
 .input-box{ position:absolute; top:160px; left:105px;color:#0952a1;width:600px;}
-.input-box .zxqh{ position:absolute; top:150px; left:0px;display:block ;}/*相对于input-box的位置*/
+.input-box .hxqh{ position:absolute; top:-40px; left:0px;display:block ;}/*相对于input-box的位置*/
+.input-box .zxqh{ position:absolute; top:100px; left:0px;display:block ;}/*相对于input-box的位置*/
 .input-box button{display:block ;height:80px;}
 .input-box p{ line-height:20px;}
 
-.input-box .gzcx{ position:absolute; top:300px; left:0px;display:block ;}/*相对于input-box的位置*/
+.input-box .gzcx{ position:absolute; top:250px; left:0px;display:block ;}/*相对于input-box的位置*/
 </style>
 </head>
 <body>
@@ -56,12 +57,12 @@ fieldset,img{border:0;}
 			<div class="input-box">
 				<c:choose>
 					<c:when test="${hstatus== '3'}">
-					<button type="button" class="btn btn-large btn-block" onclick="order_hnum()">
+					<button type="button" class="btn btn-large btn-block hxqh" onclick="order_hnum()">
 						<font size=6>横向取号(未开始)</font>
 					</button>	
 					</c:when>
 					<c:otherwise>
-					<button type="button" class="btn btn-large btn-block btn-primary" onclick="order_hnum()">
+					<button type="button" class="btn btn-large btn-block btn-primary hxqh" onclick="order_hnum()">
 						<font size=6>横向取号</font>
 					</button>
 					</c:otherwise>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <%@ page contentType="text/html; charset=UTF-8"  %>
 <head>
-<title>搜救中心财务报销预约系统</title>
+<title>搜救中心财务综合服务平台</title>
 <!-- Bootstrap -->
 <link href="<%=request.getContextPath()%>/callstatic/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	media="screen">
@@ -118,10 +118,10 @@ margin:0;padding:0;border:none;}
 	           success: function (data) {    
 	               $("#getCode").attr('disabled',true);
 	               $("#randomCode").attr('value',data);
-	               settime(10);
+	               settime(30);
 	           },    
 	           error: function (data) {    
-	             	    
+	             	alert(data);
 	           }    
 	       });    
 	}
