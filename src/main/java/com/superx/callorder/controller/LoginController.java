@@ -87,11 +87,18 @@ public class LoginController extends BaseCommonController{
 	    return ip.equals("0:0:0:0:0:0:0:1")?"127.0.0.1":ip;
 	}
 	
-	@RequestMapping("")
+	/*@RequestMapping("")
     public String index(HttpServletRequest request, 
   			HttpServletResponse response) {
         return "redirect:/login";
+    }*/
+	
+	@RequestMapping("")
+    public String index(HttpServletRequest request, 
+  			HttpServletResponse response) {
+        return "index";
     }
+	
 	
 	@RequestMapping("/login")
     public String login(HttpServletRequest request, 

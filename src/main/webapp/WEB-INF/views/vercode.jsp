@@ -120,8 +120,9 @@ margin:0;padding:0;border:none;}
 	               $("#randomCode").attr('value',data);
 	               settime(30);
 	           },    
-	           error: function (data) {    
-	             	alert(data);
+	           error: function (data) { 
+	        	   window.location.reload();
+	             	//alert(data);
 	           }    
 	       });    
 	}

@@ -22,7 +22,7 @@ table,td,tr,th{font-size:12px;}
 a{text-decoration:none;cursor:pointer;}
 fieldset,img{border:0;}
 
-.main{ position:absolute;left:50%; top:50%; background:url(<%=request.getContextPath()%>/callstatic/images/login2.png) no-repeat; width:772px; height:468px; margin:-234px 0 0 -386px;}
+.main{ position:absolute;left:50%; top:50%; background:url(<%=request.getContextPath()%>/callstatic/images/login3.png) no-repeat; width:772px; height:468px; margin:-234px 0 0 -386px;}
 
 .input-box{ position:absolute; top:110px; left:410px;color:#0952a1;}
 .input-box input{ border:1px solid #7491b5; width:154px; height:28px; background-color:#f5fafe; padding-left:4px; line-height:28px;}
@@ -32,6 +32,13 @@ fieldset,img{border:0;}
 .input-box .link{ margin-top:14px; margin-left:70px;}
 a{ height:28px; width:72px; display:inline-block; color:#fff; line-height:28px; text-align:center; margin-top:10px;}
 .log{ background:url(<%=request.getContextPath()%>/callstatic/images/log.png) no-repeat; margin-right:16px; margin-left:48px}
+
+.goto{ 
+	background:url(<%=request.getContextPath()%>/callstatic/images/goto.png) no-repeat; 
+	margin-right:16px; 
+	margin-left:25px;
+	width:210px;
+}
 
 .reset{ background:url(<%=request.getContextPath()%>/callstatic/images/reset.png) no-repeat; color:#6d6d6d;}
 .main-box .copy{ text-align:center; margin-top:8px; color:#666666;}
@@ -54,11 +61,14 @@ a{ height:28px; width:72px; display:inline-block; color:#fff; line-height:28px; 
 				</p>
 				<p>
 					<!-- <input type="checkbox" class="check" /><span class="record">记住登录名</span> -->
+					<a href="#" onclick="login_val()" class="log">登&nbsp;录</a>
+					<a href="#" onclick="cancel()" class="reset">取&nbsp;消</a>
 				</p>
-				<a href="#" onclick="login_val()" class="log">登&nbsp;录</a>
-				<a href="#" onclick="cancel()" class="reset">取&nbsp;消</a>
+				<!-- <a href="http://10.59.0.2:7001" target="_blank" class="goto">中国地震局发展与财务管理信息系统</a> -->
+				
 			</div>
 			</form>
+			
 		</div>
 		<div class="text">
 			<p></p>

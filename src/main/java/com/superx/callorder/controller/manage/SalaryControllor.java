@@ -89,7 +89,7 @@ public class SalaryControllor extends BaseCommonController {
 		
 		phone = "tel:"+phone;
 		String code = CommonUtils.getFourRandom();
-		SendMessageUtil.sendMessage(phone, "您此次工资条查询手机验证码为："+code+"，请妥善保管，不要告诉其他人。");
+		SendMessageUtil.sendMessage(phone, "您的验证码为："+code+"，请妥善保管，不要告诉其他人。");
 		return code;
 	}
 
