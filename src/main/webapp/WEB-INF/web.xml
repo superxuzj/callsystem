@@ -37,7 +37,7 @@
 			</filter-class>    
 		<init-param>    
 			<param-name>excludedPages</param-name>    
-			<param-value>/login,/user/validate</param-value>    
+			<param-value>/login,/user/validate,/</param-value>    
 		</init-param>    
 	</filter>    
 	<filter-mapping>    

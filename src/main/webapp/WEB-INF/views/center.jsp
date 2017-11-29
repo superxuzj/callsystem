@@ -37,7 +37,7 @@ padding-bottom:0px;
 margin:0;padding:0;border:none;}
 select,input,img{vertical-align:middle;}
 fieldset,img{border:0;}
-.main{ position:absolute;left:50%; top:47%; background:url(<%=request.getContextPath()%>/callstatic/images/bg3.png) no-repeat; width:850px; height:540px; margin:-234px 0 0 -386px;}
+.main{ position:absolute;left:50%; top:41%; background:url(<%=request.getContextPath()%>/callstatic/images/bg3.png) no-repeat; width:850px; height:540px; margin:-234px 0 0 -386px;}
 .input-box{ position:absolute; top:160px; left:105px;color:#0952a1;width:600px;}
 .input-box .hxqh{ position:absolute; top:-40px; left:0px;display:block ;}/*相对于input-box的位置*/
 .input-box .zxqh{ position:absolute; top:100px; left:0px;display:block ;}/*相对于input-box的位置*/

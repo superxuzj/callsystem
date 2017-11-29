@@ -60,6 +60,11 @@ public class SalaryControllor extends BaseCommonController {
 	@Autowired
 	private UserService userService; 
 
+
+	@RequestMapping("/manage")
+	public String manage() {
+		return "/manage/salaryManage";
+	}
 	/**
 	 * 跳转验证码页面
 	 * @param request
@@ -211,10 +216,6 @@ public class SalaryControllor extends BaseCommonController {
        
 	}
 	
-	@RequestMapping("/manage")
-	public String manage() {
-		return "/manage/salaryManage";
-	}
 	/**
 	 * 上传
 	 * @param request

@@ -53,7 +53,7 @@ table {
 }
 
 .bottombor {
-	border-bottom: 2px solid #C7C7C7
+	border-bottom: 1px solid #C7C7C7
 }
 .yuefenlab{
 	float: left;
@@ -63,6 +63,21 @@ table {
 }
 .export{
 	margin-left:500px;
+	width:105px;
+}
+.btcls{
+	margin-top:-10px !important;
+	margin-left:10px !important;
+	width:80px;
+}
+th{
+background-color:#f9f9f9;
+}
+td{
+background-color:#ffffff !important;
+}
+.trbg{
+background-color:#d6e4fd !important;
 }
 </style>
 </head>
@@ -83,7 +98,7 @@ table {
 												<div class="control-group">
 													<label class="control-label yuefenlab">月份</label> 
 													<input type="text" id="datatime" name="datatime" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM'})" class="Wdate"/>
-													<button class="btn btn-primary" onclick="doSearch()">查找</button>
+													<button class="btn btn-warning btcls" onclick="doSearch()">查找</button>
 												</div>
 											</div>
 										</div>
@@ -109,7 +124,6 @@ table {
 															<th>工改保留</th>
 															<th>津贴</th>
 															<th>浮动工资</th>
-															<th></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -121,7 +135,6 @@ table {
 															<td>${salaryOne.gonggai }</td>
 															<td>${salaryOne.jintie }</td>
 															<td>${salaryOne.fudong }</td>
-															<td></td>
 														</tr>
 													</tbody>
 
@@ -134,7 +147,6 @@ table {
 															<th>回婴独</th>
 															<th>菜蓝子</th>
 															<th>生活补贴</th>
-															<th></th>
 
 														</tr>
 													</thead>
@@ -147,7 +159,6 @@ table {
 															<td>${salaryOne.huiyingdu }</td>
 															<td>${salaryOne.cailanzi }</td>
 															<td>${salaryOne.shenghuo }</td>
-															<td></td>
 														</tr>
 													</tbody>
 													<thead>
@@ -159,7 +170,6 @@ table {
 															<th>补发</th>
 															<th>应发工资合计</th>
 															<th>其他</th>
-															<th></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -171,7 +181,6 @@ table {
 															<td>${salaryOne.bufa }</td>
 															<td>${salaryOne.yingfaheji }</td>
 															<td>${salaryOne.qita }</td>
-															<td></td>
 														</tr>
 													</tbody>
 
@@ -184,7 +193,7 @@ table {
 															<th>职补</th>
 															<th>通信补贴</th>
 															<th>个税</th>
-															<th>实发工资合计</th>
+															<th></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -196,7 +205,6 @@ table {
 															<td>${salaryOne.zhibu }</td>
 															<td>${salaryOne.tongxin }</td>
 															<td>${salaryOne.geshui }</td>
-															<td>${salaryOne.shifaheji }</td>
 
 														</tr>
 													</tbody>
@@ -210,7 +218,6 @@ table {
 															<th>应发费用合计</th>
 															<th>费用个税</th>
 															<th></th>
-															<th>实发费用合计</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -222,36 +229,45 @@ table {
 															<td>${salaryTwo.yingfaheji }</td>
 															<td>${salaryTwo.geshui }</td>
 															<td></td>
-															<td>${salaryTwo.shifaheji }</td>
 
 														</tr>
 													</tbody>
 
-<thead>
+													<thead><!-- 空一行 不显示 -->
 														<tr>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th>合计</th>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+													</thead>
+													<thead>
+														<tr>
+															<th class="trbg">实发工资合计</th>
+															<th class="trbg">实发费用合计</th>
+															<th class="trbg"></th>
+															<th class="trbg"></th>
+															<th class="trbg"></th>
+															<th class="trbg"></th>
+															<th class="trbg">合计</th>
 														</tr>
 													</thead>
 													<tbody>
 														<tr class="bottombor">
-															<td></td>
-															<td></td>
-															<td></td>
+															<td>${salaryOne.shifaheji }</td>
+															<td>${salaryTwo.shifaheji }</td>
 															<td></td>
 															<td></td>
 															<td></td>
 															<td></td>
 															<td>${salaryOne.heji }</td>
-
 														</tr>
 													</tbody>
+													
 												</table>
 												<button class="btn btn-primary export" onclick="exportSalary('${datatime}')"> 导出</button>
 											</div>

@@ -37,6 +37,7 @@ public class LoginController extends BaseCommonController{
 		3纵向
 		4横纵
 		5管理员
+		6财务管理员
 	 * @param request
 	 * @param response
 	 * @param user
@@ -59,6 +60,9 @@ public class LoginController extends BaseCommonController{
 		}
 		if(usermodel.getType()!=null && usermodel.getType().equals("5")){
 			return "redirect:/manage";
+		}
+		else if(usermodel.getType()!=null && usermodel.getType().equals("6")){//财务管理员
+			return "redirect:/salary/manage";
 		}else if(usermodel.getType()!=null && usermodel.getType().equals("4")){
 			return "redirect:/business";
 		}else if(usermodel.getType()!=null && usermodel.getType().equals("3")){
