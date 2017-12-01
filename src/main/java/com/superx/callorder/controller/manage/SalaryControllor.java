@@ -17,6 +17,7 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -149,6 +150,10 @@ public class SalaryControllor extends BaseCommonController {
 			salaryOne.setYanglao(getDecrypt(salaryOne.getYanglao()));
 			salaryOne.setShiye(getDecrypt(salaryOne.getShiye()));
 			salaryOne.setYukou(getDecrypt(salaryOne.getYukou()));
+			//新加的两个
+			salaryOne.setBukougong(getDecrypt(salaryOne.getBukougong()));
+			salaryOne.setKougonghui(getDecrypt(salaryOne.getKougonghui()));
+			
 			salaryOne.setShifaheji(getDecrypt(salaryOne.getShifaheji()));
 		}
 		
@@ -247,7 +252,9 @@ public class SalaryControllor extends BaseCommonController {
 			if(typeString.trim().equals("薪级工资")){
 				//去重操作，删除当前月份的数据
 				HSSFRow hssfRowCount = hssfSheet.getRow(1);
-				salaryOneService.deletByCount(getCount(hssfRowCount.getCell(29)));
+				//count改到31列 新加了两个
+				//hssfRowCount.getCell(31).toString()
+				salaryOneService.deletByCount(getCount(hssfRowCount.getCell(31)));
 				
 				// 工资条1 多的
 				for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
@@ -257,7 +264,7 @@ public class SalaryControllor extends BaseCommonController {
 						HSSFCell department = hssfRow.getCell(0);
 						salaryOne.setDepartment(getNoValue(department));
 						HSSFCell name = hssfRow.getCell(1);
-						if (getNoValue(name).trim().equals("")) {
+						if (null==name || getNoValue(name).trim().equals("")) {
 							continue;
 						}
 						salaryOne.setName(getNoValue(name));
@@ -311,11 +318,18 @@ public class SalaryControllor extends BaseCommonController {
 						salaryOne.setYanglao(getValue(yanglao));
 						HSSFCell shiye = hssfRow.getCell(26);
 						salaryOne.setShiye(getValue(shiye));
-						HSSFCell yukou = hssfRow.getCell(27);
+						
+						//新加的两个
+						HSSFCell bukougong = hssfRow.getCell(27);
+						salaryOne.setBukougong(getValue(bukougong));
+						HSSFCell kougonghui = hssfRow.getCell(28);
+						salaryOne.setKougonghui(getValue(kougonghui));
+						
+						HSSFCell yukou = hssfRow.getCell(29);
 						salaryOne.setYukou(getValue(yukou));
-						HSSFCell shifaheji = hssfRow.getCell(28);
+						HSSFCell shifaheji = hssfRow.getCell(30);
 						salaryOne.setShifaheji(getValue(shifaheji));
-						HSSFCell count = hssfRow.getCell(29);
+						HSSFCell count = hssfRow.getCell(31);
 						salaryOne.setCount(getCount(count));
 						String year =new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime());
 						String month = getCount(count);
@@ -386,10 +400,10 @@ public class SalaryControllor extends BaseCommonController {
 			salaryRecord.setCreator("admin");
 			salaryRecordService.insertSelective(salaryRecord);
 			
-		} catch (IOException c) {
+		} catch (Exception c) {
 			// TODO Auto-generated catch block
 			c.printStackTrace();
-			model.addAttribute("message", "文档内容错误，请检查重新上传");
+			model.addAttribute("message", "文档内容错误，请检查重新上传。系统只支持Excel 97-2003类型的xls文件。请严格按照给定模板上传。");
 			return "/manage/info";
 		}
 		model.addAttribute("message", "上传成功");
@@ -403,7 +417,7 @@ public class SalaryControllor extends BaseCommonController {
 	 */
 	private String getNoValue(HSSFCell hssfCell){
 		String returnString = "";
-		if (hssfCell.getCellType() == hssfCell.CELL_TYPE_BOOLEAN) {
+		if (hssfCell.getCellType() == Cell.CELL_TYPE_BOOLEAN) {
 			returnString =  String.valueOf(hssfCell.getBooleanCellValue());
 		} else if (hssfCell.getCellType() == hssfCell.CELL_TYPE_NUMERIC) {
 			DecimalFormat df = new DecimalFormat("######0.00");
@@ -417,9 +431,9 @@ public class SalaryControllor extends BaseCommonController {
 	// 转换数据格式
 	private String getValue(HSSFCell hssfCell) {
 		String returnString = "";
-		if (hssfCell.getCellType() == hssfCell.CELL_TYPE_BOOLEAN) {
+		if (hssfCell.getCellType() == Cell.CELL_TYPE_BOOLEAN) {
 			returnString =  String.valueOf(hssfCell.getBooleanCellValue());
-		} else if (hssfCell.getCellType() == hssfCell.CELL_TYPE_NUMERIC) {
+		} else if (hssfCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
 			DecimalFormat df = new DecimalFormat("######0.00");
 			returnString = df.format(hssfCell.getNumericCellValue());
 		} else {
@@ -441,7 +455,11 @@ public class SalaryControllor extends BaseCommonController {
 	// 转换数据格式
 	private String getCount(HSSFCell hssfCell) {
 		DecimalFormat df = new DecimalFormat("######0");
-		return df.format(hssfCell.getNumericCellValue());
+		 if (hssfCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+			 return df.format(hssfCell.getNumericCellValue());
+		} else {
+			return String.valueOf(hssfCell.getStringCellValue());
+		}
 	}
 	
 	/**

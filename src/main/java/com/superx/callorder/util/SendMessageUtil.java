@@ -71,6 +71,11 @@ public class SendMessageUtil {
 		return requestIdentifier;
 	}
 	
+	public static void main(String[] args) {
+		String retu = SendMessageUtil.sendMessage("tel:", "22");
+		System.out.println(retu);
+	}
+	
 	/**
 参考 sendSms
 	 * #应用ID或插件的ID

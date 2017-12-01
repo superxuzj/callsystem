@@ -25,6 +25,10 @@
 .submittijioa{
 	margin-left:80px;
 }
+.remarkclass{
+ margin-left:30px;
+ margin-top:20px;
+}
 </style>
     </head>
     <body>
@@ -51,7 +55,12 @@
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">工资文档上传</div>
                             </div>
-                            <div class="btn-group">
+                            	<div class="remarkclass">说明：
+                            	<br/>1、请将工资条1和工资条2分开上传；
+                            	<br/>2、重复上传会覆盖之前的数据；
+                            	<br/>3、请严格按照给定模板上传数据；
+                            	<br/>4、系统只支持Excel 97-2003类型的xls文件。</div>
+                            <div class="btn-group remarkclass">
                              	 <form action="/salary/uploadfile" enctype="multipart/form-data" method="post">
 								       <input id="lefile" type="file" name="file" style="display:none">  
 										<div class="input-append">  

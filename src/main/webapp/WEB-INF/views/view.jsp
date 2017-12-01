@@ -65,6 +65,10 @@ table {
 	margin-left:500px;
 	width:105px;
 }
+.backbuton{
+margin-left:10px;
+width:105px;
+}
 .btcls{
 	margin-top:-10px !important;
 	margin-left:10px !important;
@@ -189,11 +193,10 @@ background-color:#d6e4fd !important;
 															<th>公积金</th>
 															<th>养老保险</th>
 															<th>失业保险</th>
+															<th>补扣公积金</th>
+															<th>扣工会会费</th>
 															<th>预扣养老金</th>
 															<th>职补</th>
-															<th>通信补贴</th>
-															<th>个税</th>
-															<th></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -201,10 +204,34 @@ background-color:#d6e4fd !important;
 															<td>${salaryOne.gongjijin }</td>
 															<td>${salaryOne.yanglao }</td>
 															<td>${salaryOne.shiye }</td>
+															<td>${salaryOne.bukougong }</td>
+															<td>${salaryOne.kougonghui }</td>
 															<td>${salaryOne.yukou }</td>
 															<td>${salaryOne.zhibu }</td>
+														</tr>
+													</tbody>
+													
+													<thead>
+														<tr>
+															<th>个税</th>
+															<th>通信补贴</th>
+															<th></th>
+															<th></th>
+															<th></th>
+															<th></th>
+															<th></th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="bottombor">
+															<td>${salaryOne.geshui  }</td>
 															<td>${salaryOne.tongxin }</td>
-															<td>${salaryOne.geshui }</td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
 
 														</tr>
 													</tbody>
@@ -270,6 +297,7 @@ background-color:#d6e4fd !important;
 													
 												</table>
 												<button class="btn btn-primary export" onclick="exportSalary('${datatime}')"> 导出</button>
+												<button class="btn btn-warning backbuton" onclick="goback()"> 返回</button>
 											</div>
 										</div>
 									</div>
@@ -318,6 +346,9 @@ background-color:#d6e4fd !important;
 		window.location.href ="/salary/export?datatime="+datatime;
 	}
 	
+	function goback(){
+		window.location.href ="/center";
+	}
 	</script>
 </body>
 

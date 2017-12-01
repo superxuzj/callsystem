@@ -60,6 +60,10 @@ public class SalaryOne {
     private String yanglao;
 
     private String shiye;
+    
+    private String bukougong;
+
+    private String kougonghui;
 
     private String yukou;
 
@@ -361,5 +365,21 @@ public class SalaryOne {
 
 	public void setHeji(String heji) {
 		this.heji = heji;
+	}
+
+	public String getBukougong() {
+		return bukougong;
+	}
+
+	public void setBukougong(String bukougong) {
+		this.bukougong = bukougong;
+	}
+
+	public String getKougonghui() {
+		return kougonghui;
+	}
+
+	public void setKougonghui(String kougonghui) {
+		this.kougonghui = kougonghui;
 	}
 }

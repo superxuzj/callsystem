@@ -31,6 +31,8 @@
     <result column="GONGJIJIN" property="gongjijin" jdbcType="VARCHAR" />
     <result column="YANGLAO" property="yanglao" jdbcType="VARCHAR" />
     <result column="SHIYE" property="shiye" jdbcType="VARCHAR" />
+    <result column="BUKOUGONG" property="bukougong" jdbcType="VARCHAR" />
+    <result column="KOUGONGHUI" property="kougonghui" jdbcType="VARCHAR" />
     <result column="YUKOU" property="yukou" jdbcType="VARCHAR" />
     <result column="SHIFAHEJI" property="shifaheji" jdbcType="VARCHAR" />
     <result column="COUNT" property="count" jdbcType="VARCHAR" />
@@ -42,7 +44,7 @@
     ID, USERID, DEPARTMENT, NAME, XINJI, GANGWEI, GONGGAI, JINTIE, FUDONG, ZHIBU, DIQU, 
     JIAOBU, WEINARU, TIZU, HUIYINGDU, CAILANZI, SHENGHUO, TONGXIN, GUGINGGANGWEI, FUDONGGANGWEI, 
     WUYEFEI, XIANGMUJIXIAO, BUFA, YINGFAHEJI, QITA, GESHUI, GONGJIJIN, YANGLAO, SHIYE, 
-    YUKOU, SHIFAHEJI, COUNT, NIANYUE, CTRATETIME, CTRATOR
+    BUKOUGONG, KOUGONGHUI, YUKOU, SHIFAHEJI, COUNT, NIANYUE, CTRATETIME, CTRATOR
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -64,9 +66,10 @@
       GUGINGGANGWEI, FUDONGGANGWEI, WUYEFEI, 
       XIANGMUJIXIAO, BUFA, YINGFAHEJI, 
       QITA, GESHUI, GONGJIJIN, 
-      YANGLAO, SHIYE, YUKOU, 
-      SHIFAHEJI, COUNT, NIANYUE, 
-      CTRATETIME, CTRATOR)
+      YANGLAO, SHIYE, BUKOUGONG, 
+      KOUGONGHUI, YUKOU, SHIFAHEJI, 
+      COUNT, NIANYUE, CTRATETIME, 
+      CTRATOR)
     values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{xinji,jdbcType=VARCHAR}, #{gangwei,jdbcType=VARCHAR}, 
       #{gonggai,jdbcType=VARCHAR}, #{jintie,jdbcType=VARCHAR}, #{fudong,jdbcType=VARCHAR}, 
@@ -76,9 +79,10 @@
       #{guginggangwei,jdbcType=VARCHAR}, #{fudonggangwei,jdbcType=VARCHAR}, #{wuyefei,jdbcType=VARCHAR}, 
       #{xiangmujixiao,jdbcType=VARCHAR}, #{bufa,jdbcType=VARCHAR}, #{yingfaheji,jdbcType=VARCHAR}, 
       #{qita,jdbcType=VARCHAR}, #{geshui,jdbcType=VARCHAR}, #{gongjijin,jdbcType=VARCHAR}, 
-      #{yanglao,jdbcType=VARCHAR}, #{shiye,jdbcType=VARCHAR}, #{yukou,jdbcType=VARCHAR}, 
-      #{shifaheji,jdbcType=VARCHAR}, #{count,jdbcType=VARCHAR}, #{nianyue,jdbcType=VARCHAR}, 
-      #{ctratetime,jdbcType=TIMESTAMP}, #{ctrator,jdbcType=VARCHAR})
+      #{yanglao,jdbcType=VARCHAR}, #{shiye,jdbcType=VARCHAR}, #{bukougong,jdbcType=VARCHAR}, 
+      #{kougonghui,jdbcType=VARCHAR}, #{yukou,jdbcType=VARCHAR}, #{shifaheji,jdbcType=VARCHAR}, 
+      #{count,jdbcType=VARCHAR}, #{nianyue,jdbcType=VARCHAR}, #{ctratetime,jdbcType=TIMESTAMP}, 
+      #{ctrator,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.superx.callorder.entity.SalaryOne" >
     insert into t_salaryone
@@ -169,6 +173,12 @@
       </if>
       <if test="shiye != null" >
         SHIYE,
+      </if>
+      <if test="bukougong != null" >
+        BUKOUGONG,
+      </if>
+      <if test="kougonghui != null" >
+        KOUGONGHUI,
       </if>
       <if test="yukou != null" >
         YUKOU,
@@ -277,6 +287,12 @@
       <if test="shiye != null" >
         #{shiye,jdbcType=VARCHAR},
       </if>
+      <if test="bukougong != null" >
+        #{bukougong,jdbcType=VARCHAR},
+      </if>
+      <if test="kougonghui != null" >
+        #{kougonghui,jdbcType=VARCHAR},
+      </if>
       <if test="yukou != null" >
         #{yukou,jdbcType=VARCHAR},
       </if>
@@ -384,6 +400,12 @@
       <if test="shiye != null" >
         SHIYE = #{shiye,jdbcType=VARCHAR},
       </if>
+      <if test="bukougong != null" >
+        BUKOUGONG = #{bukougong,jdbcType=VARCHAR},
+      </if>
+      <if test="kougonghui != null" >
+        KOUGONGHUI = #{kougonghui,jdbcType=VARCHAR},
+      </if>
       <if test="yukou != null" >
         YUKOU = #{yukou,jdbcType=VARCHAR},
       </if>
@@ -435,6 +457,8 @@
       GONGJIJIN = #{gongjijin,jdbcType=VARCHAR},
       YANGLAO = #{yanglao,jdbcType=VARCHAR},
       SHIYE = #{shiye,jdbcType=VARCHAR},
+      BUKOUGONG = #{bukougong,jdbcType=VARCHAR},
+      KOUGONGHUI = #{kougonghui,jdbcType=VARCHAR},
       YUKOU = #{yukou,jdbcType=VARCHAR},
       SHIFAHEJI = #{shifaheji,jdbcType=VARCHAR},
       COUNT = #{count,jdbcType=VARCHAR},

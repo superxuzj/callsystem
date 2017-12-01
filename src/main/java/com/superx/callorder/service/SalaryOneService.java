@@ -55,7 +55,7 @@ public class SalaryOneService {
 	String[] excelHeader = { "部门名称","职员姓名	","薪级工资","岗位工资","工改保留","津贴","浮动工资","职补","地区补助",
 			"交补","未纳入","提租补贴","回婴独","菜蓝子","生活补贴","通信补贴","固定岗位绩效","浮动岗位绩效","物业费",
 			"项目绩效","补发","应发工资合计","其他","个税","公积金","养老保险","失业保险","预扣养老金","实发工资合计",
-			"编辑费","值班费","讲课费","出车补助","应发费用合计","费用个税","实发费用合计","发放次数","合计"};  
+			"编辑费","值班费","讲课费","出车补助","应发费用合计","费用个税","实发费用合计","补扣公积金","扣工会会费","发放次数","合计"};  
 	public HSSFWorkbook export(SalaryOne record) {    
         HSSFWorkbook wb = new HSSFWorkbook();    
         HSSFSheet sheet = wb.createSheet("工资条");    
@@ -129,12 +129,19 @@ public class SalaryOneService {
         row.createCell(31).setCellValue(getDecrypt(salaryTwo.getJiangke()));
         row.createCell(32).setCellValue(getDecrypt(salaryTwo.getChuche()));
         row.createCell(33).setCellValue(getDecrypt(salaryTwo.getYingfaheji()));
+        
+        
+        
         row.createCell(34).setCellValue(getDecrypt(salaryTwo.getGeshui()));
         row.createCell(35).setCellValue(getDecrypt(salaryTwo.getShifaheji()));
+        
+        row.createCell(36).setCellValue(getDecrypt(salaryOne.getBukougong()));
+        row.createCell(37).setCellValue(getDecrypt(salaryOne.getKougonghui()));
+        
         if(salaryOne.getCount()!=null){
-        	 row.createCell(36).setCellValue(salaryOne.getCount());
+        	 row.createCell(38).setCellValue(salaryOne.getCount());
         }else{
-        	row.createCell(36).setCellValue(salaryTwo.getCount());
+        	row.createCell(38).setCellValue(salaryTwo.getCount());
         }
        
         String sb1 = getDecrypt(salaryOne.getShifaheji());
@@ -148,7 +155,7 @@ public class SalaryOneService {
 		BigDecimal b1 = new BigDecimal(sb1);  
         BigDecimal b2 = new BigDecimal(sb2);
         
-        row.createCell(37).setCellValue(b1.add(b2).toString());
+        row.createCell(39).setCellValue(b1.add(b2).toString());
         
         return wb;    
     }    
