@@ -46,6 +46,8 @@ public class SalaryOne {
     private String wuyefei;
 
     private String xiangmujixiao;
+    
+    private String jiaban;
 
     private String bufa;
 
@@ -381,5 +383,13 @@ public class SalaryOne {
 
 	public void setKougonghui(String kougonghui) {
 		this.kougonghui = kougonghui;
+	}
+
+	public String getJiaban() {
+		return jiaban;
+	}
+
+	public void setJiaban(String jiaban) {
+		this.jiaban = jiaban;
 	}
 }

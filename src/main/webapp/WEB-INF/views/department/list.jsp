@@ -33,10 +33,10 @@
                         <li class="active">
                             <a href=""><i class="icon-chevron-right"></i> 菜单</a>
                         </li>
-                        <li class="activeli">
+                        <li >
                             <a href="<%=request.getContextPath()%>/manage"><i class="icon-chevron-right"></i> 用户管理</a>
                         </li>
-                        <li>
+                        <li class="activeli">
                             <a href="<%=request.getContextPath()%>/department"><i class="icon-chevron-right"></i> 部门管理</a>
                         </li>
                         <li>
@@ -50,29 +50,15 @@
                 </div>
                 <!--/span-->
                 <div class="span9" id="content">
-                 <div class="row-fluid">
-                        <!-- block -->
-                        <form class="form-horizontal">
-                        <div class="span12" id="content">
-                			 <div class="row-fluid">
-                                <div class="control-group">
-                                  <label class="control-label" >姓名</label>
-                                    <input class="input-xlarge focused" name="name" id="focusedInput" type="text" placeholder="输入姓名查找">
-                                     <button type="submit" class="btn btn-primary">查找</button>
-                                </div>
-                                </div>
-                                </div>
-                          </form>
-                        <!-- /block -->
-                    </div>
+                 
                     <div class="row-fluid">
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">用户列表</div>
+                                <div class="muted pull-left">部门列表</div>
                                 
                             </div>
                             <div class="btn-group">
-                                         <a href="#"><button onclick="goAdduser()" class="btn btn-success">新增用户<i class="icon-plus icon-white"></i></button></a>
+                                         <a href="#"><button onclick="goAdddepart()" class="btn btn-success">新增部门<i class="icon-plus icon-white"></i></button></a>
                                       </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -80,22 +66,18 @@
 						              <thead>
 						                <tr>
 						                  <th>序号</th>
-						                  <th>姓名</th>
-						                  <th>手机</th>
-						                  <th>部门</th>
+						                  <th>名称</th>
 						                  <th>操作</th>
 						                </tr>
 						              </thead>
 						              <tbody>
-						              <c:forEach items="${page.results }" var="user">
+						              <c:forEach items="${page.results }" var="depart">
 							               <tr>
-							                  <td>${user.id} </td>
-							                  <td>${user.name}</td>
-							                  <td>${user.phone}</td>
-							                  <td>${user.department}</td>
+							                  <td>${depart.id} </td>
+							                  <td>${depart.name}</td>
 							                  <td>
-							                  	<button class="btn btn-danger" onclick="editUser(${user.id})">修改</button>
-							                  	<button class="btn btn-danger" onclick="delUser(${user.id})">删除</button>
+							                  	<button class="btn btn-danger" onclick="editDepart(${depart.id})">修改</button>
+							                  	<button class="btn btn-danger" onclick="deldepart(${depart.id})">删除</button>
 							                  </td>
 							                </tr>
 									   </c:forEach>
@@ -125,21 +107,21 @@
 <script src="<%=request.getContextPath()%>/callstatic/assets/scripts.js"></script>
 <script src="<%=request.getContextPath()%>/callstatic/assets/DT_bootstrap.js"></script>
 <script>
-function delUser(userid){
+function deldepart(departId){
 	if(window.confirm('你确定要删除吗？')){
         //alert("确定");
-		window.location.href="<%=request.getContextPath()%>/manage/deluser?id="+userid;
+		window.location.href="<%=request.getContextPath()%>/department/deldepartment?id="+departId;
      }else{
         //alert("取消");
         return false;
     }
 	
 }
-function goAdduser(){
-	window.location.href="<%=request.getContextPath()%>/manage/goadduser";
+function goAdddepart(){
+	window.location.href="<%=request.getContextPath()%>/department/goadddepartment";
 }
-function editUser(userid){
-	window.location.href="<%=request.getContextPath()%>/manage/edituser?id="+userid;
+function editDepart(departId){
+	window.location.href="<%=request.getContextPath()%>/department/editdepartment?id="+departId;
 }
 //第一页
 function firstPage(currentPage,totalPage){
@@ -147,7 +129,7 @@ function firstPage(currentPage,totalPage){
 		alert("已经是第一页数据");
 		return false;
 	}else{
-		window.location.href="<%=request.getContextPath()%>/manage?pageNo=1";
+		window.location.href="<%=request.getContextPath()%>/department/list?pageNo=1";
 		return true;
 	}
 }
@@ -157,7 +139,7 @@ function nextPage(currentPage,totalPage){
 		alert("已经是最后一页数据");
 		return false;
 	}else{
-		window.location.href="<%=request.getContextPath()%>/manage?pageNo=" + (parseInt(currentPage)+1);
+		window.location.href="<%=request.getContextPath()%>/department/list?pageNo=" + (parseInt(currentPage)+1);
 		return true;
 	}
 }
@@ -167,7 +149,7 @@ function previousPage(currentPage,totalPage){
 		alert("已经是第一页数据");
 		return false;
 	}else{
-		window.location.href = "<%=request.getContextPath()%>/manage?pageNo=" + (currentPage-1);
+		window.location.href = "<%=request.getContextPath()%>/department/list?pageNo=" + (currentPage-1);
 		return true;
 	}
 }
@@ -179,7 +161,7 @@ function lastPage(currentPage,totalPage){
 		alert("已经是最后一页数据");
 		return false;
 	}else{
-		window.location.href = "<%=request.getContextPath()%>/manage?pageNo=" +totalPage;
+		window.location.href = "<%=request.getContextPath()%>/department/list?pageNo=" +totalPage;
 		return true;
 	}
 }

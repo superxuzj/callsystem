@@ -38,7 +38,7 @@
                 <div class="span3" id="sidebar">
                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                         <li class="active">
-                            <a href=""><i class="icon-chevron-right"></i> 菜单</a>
+                            <a href="<%=request.getContextPath()%>/salary/manage"><i class="icon-chevron-right"></i> 菜单</a>
                         </li>
                         <li >
                             <a href="<%=request.getContextPath()%>/salary/manage"><i class="icon-chevron-right"></i>工资管理</a>

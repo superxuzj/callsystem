@@ -84,7 +84,7 @@ fieldset,img{border:0;}
 				
 				<p></p>
 				<button type="button" class="btn btn-large btn-block btn-success gzcx" onclick="go_salary()">
-						<font size=6>工资查询</font>
+						<font size=6>工资查询（内测 敬请期待）</font>
 					</button>
 				
 			</div>

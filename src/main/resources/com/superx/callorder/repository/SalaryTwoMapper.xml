@@ -6,8 +6,12 @@
     <result column="USERID" property="userid" jdbcType="INTEGER" />
     <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="ZIXUN" property="zixun" jdbcType="VARCHAR" />
+    <result column="PINGSHEN" property="pingshen" jdbcType="VARCHAR" />
+    <result column="SHENGAO" property="shengao" jdbcType="VARCHAR" />
     <result column="BIANJI" property="bianji" jdbcType="VARCHAR" />
     <result column="ZHIBAN" property="zhiban" jdbcType="VARCHAR" />
+    <result column="QITA" property="qita" jdbcType="VARCHAR" />
     <result column="JIANGKE" property="jiangke" jdbcType="VARCHAR" />
     <result column="CHUCHE" property="chuche" jdbcType="VARCHAR" />
     <result column="YINGFAHEJI" property="yingfaheji" jdbcType="VARCHAR" />
@@ -19,8 +23,8 @@
     <result column="CTRATOR" property="ctrator" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, USERID, DEPARTMENT, NAME, BIANJI, ZHIBAN, JIANGKE, CHUCHE, YINGFAHEJI, GESHUI, 
-    SHIFAHEJI, COUNT, NIANYUE, CTRATETIME, CTRATOR
+    ID, USERID, DEPARTMENT, NAME, ZIXUN, PINGSHEN, SHENGAO, BIANJI, ZHIBAN, QITA, JIANGKE, 
+    CHUCHE, YINGFAHEJI, GESHUI, SHIFAHEJI, COUNT, NIANYUE, CTRATETIME, CTRATOR
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -34,17 +38,19 @@
   </delete>
   <insert id="insert" parameterType="com.superx.callorder.entity.SalaryTwo" >
     insert into t_salarytwo (ID, USERID, DEPARTMENT, 
-      NAME, BIANJI, ZHIBAN, 
-      JIANGKE, CHUCHE, YINGFAHEJI, 
-      GESHUI, SHIFAHEJI, COUNT, 
-      NIANYUE, CTRATETIME, CTRATOR
-      )
+      NAME, ZIXUN, PINGSHEN, 
+      SHENGAO, BIANJI, ZHIBAN, 
+      QITA, JIANGKE, CHUCHE, 
+      YINGFAHEJI, GESHUI, SHIFAHEJI, 
+      COUNT, NIANYUE, CTRATETIME, 
+      CTRATOR)
     values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{bianji,jdbcType=VARCHAR}, #{zhiban,jdbcType=VARCHAR}, 
-      #{jiangke,jdbcType=VARCHAR}, #{chuche,jdbcType=VARCHAR}, #{yingfaheji,jdbcType=VARCHAR}, 
-      #{geshui,jdbcType=VARCHAR}, #{shifaheji,jdbcType=VARCHAR}, #{count,jdbcType=VARCHAR}, 
-      #{nianyue,jdbcType=VARCHAR}, #{ctratetime,jdbcType=TIMESTAMP}, #{ctrator,jdbcType=VARCHAR}
-      )
+      #{name,jdbcType=VARCHAR}, #{zixun,jdbcType=VARCHAR}, #{pingshen,jdbcType=VARCHAR}, 
+      #{shengao,jdbcType=VARCHAR}, #{bianji,jdbcType=VARCHAR}, #{zhiban,jdbcType=VARCHAR}, 
+      #{qita,jdbcType=VARCHAR}, #{jiangke,jdbcType=VARCHAR}, #{chuche,jdbcType=VARCHAR}, 
+      #{yingfaheji,jdbcType=VARCHAR}, #{geshui,jdbcType=VARCHAR}, #{shifaheji,jdbcType=VARCHAR}, 
+      #{count,jdbcType=VARCHAR}, #{nianyue,jdbcType=VARCHAR}, #{ctratetime,jdbcType=TIMESTAMP}, 
+      #{ctrator,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.superx.callorder.entity.SalaryTwo" >
     insert into t_salarytwo
@@ -61,11 +67,23 @@
       <if test="name != null" >
         NAME,
       </if>
+      <if test="zixun != null" >
+        ZIXUN,
+      </if>
+      <if test="pingshen != null" >
+        PINGSHEN,
+      </if>
+      <if test="shengao != null" >
+        SHENGAO,
+      </if>
       <if test="bianji != null" >
         BIANJI,
       </if>
       <if test="zhiban != null" >
         ZHIBAN,
+      </if>
+      <if test="qita != null" >
+        QITA,
       </if>
       <if test="jiangke != null" >
         JIANGKE,
@@ -108,11 +126,23 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="zixun != null" >
+        #{zixun,jdbcType=VARCHAR},
+      </if>
+      <if test="pingshen != null" >
+        #{pingshen,jdbcType=VARCHAR},
+      </if>
+      <if test="shengao != null" >
+        #{shengao,jdbcType=VARCHAR},
+      </if>
       <if test="bianji != null" >
         #{bianji,jdbcType=VARCHAR},
       </if>
       <if test="zhiban != null" >
         #{zhiban,jdbcType=VARCHAR},
+      </if>
+      <if test="qita != null" >
+        #{qita,jdbcType=VARCHAR},
       </if>
       <if test="jiangke != null" >
         #{jiangke,jdbcType=VARCHAR},
@@ -155,11 +185,23 @@
       <if test="name != null" >
         NAME = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="zixun != null" >
+        ZIXUN = #{zixun,jdbcType=VARCHAR},
+      </if>
+      <if test="pingshen != null" >
+        PINGSHEN = #{pingshen,jdbcType=VARCHAR},
+      </if>
+      <if test="shengao != null" >
+        SHENGAO = #{shengao,jdbcType=VARCHAR},
+      </if>
       <if test="bianji != null" >
         BIANJI = #{bianji,jdbcType=VARCHAR},
       </if>
       <if test="zhiban != null" >
         ZHIBAN = #{zhiban,jdbcType=VARCHAR},
+      </if>
+      <if test="qita != null" >
+        QITA = #{qita,jdbcType=VARCHAR},
       </if>
       <if test="jiangke != null" >
         JIANGKE = #{jiangke,jdbcType=VARCHAR},
@@ -196,8 +238,12 @@
     set USERID = #{userid,jdbcType=INTEGER},
       DEPARTMENT = #{department,jdbcType=VARCHAR},
       NAME = #{name,jdbcType=VARCHAR},
+      ZIXUN = #{zixun,jdbcType=VARCHAR},
+      PINGSHEN = #{pingshen,jdbcType=VARCHAR},
+      SHENGAO = #{shengao,jdbcType=VARCHAR},
       BIANJI = #{bianji,jdbcType=VARCHAR},
       ZHIBAN = #{zhiban,jdbcType=VARCHAR},
+      QITA = #{qita,jdbcType=VARCHAR},
       JIANGKE = #{jiangke,jdbcType=VARCHAR},
       CHUCHE = #{chuche,jdbcType=VARCHAR},
       YINGFAHEJI = #{yingfaheji,jdbcType=VARCHAR},
@@ -209,6 +255,7 @@
       CTRATOR = #{ctrator,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  
   <delete id="deletByCount" parameterType="java.lang.String" >
     delete from t_salarytwo
     where COUNT = #{count,jdbcType=VARCHAR}

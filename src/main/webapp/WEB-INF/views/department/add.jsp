@@ -2,9 +2,9 @@
     pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<html>
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<html>
     <head>
         <title>搜救中心财务报销预约后台管理系统</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -34,15 +34,17 @@
                             <a href=""><i class="icon-chevron-right"></i> 菜单</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/manage"><i class="icon-chevron-right"></i> 用户管理</a>
+                            <a href="/manage"><i class="icon-chevron-right"></i> 用户管理</a>
                         </li>
-                         <li>
+                         <li  class="activeli">
                             <a href="<%=request.getContextPath()%>/department"><i class="icon-chevron-right"></i> 部门管理</a>
                         </li>
-                         <li class="activeli">
+                       <li>
                             <a href="<%=request.getContextPath()%>/dictionary"><i class="icon-chevron-right"></i> 内容管理</a>
+                        </li><!-- <li>
+                            <a href="#"><i class="icon-chevron-right"></i> 业务管理</a>
                         </li>
-                       <!-- <li>
+                        <li>
                             <a href="#"><i class="icon-chevron-right"></i> 通告管理</a>
                         </li> -->
                         
@@ -50,41 +52,26 @@
                 </div>
                 <!--/span-->
                 <div class="span9" id="content">
-                 <div class="row-fluid">
-                        <!-- block -->
-                        <!-- /block -->
-                    </div>
                     <div class="row-fluid">
                         <div class="block">
-                            <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">用户列表</div>
-                                
-                            </div>
                             <div class="block-content collapse in">
-                                <div class="span12">
-  									<table class="table table-striped">
-						              <thead>
-						                <tr>
-						                  <th>序号</th>
-						                  <th>名称</th>
-						                  <th>内容</th>
-						                  <th>操作</th>
-						                </tr>
-						              </thead>
-						              <tbody>
-						              <c:forEach items="${dictionaryList }" var="dictionary">
-							               <tr>
-							                  <td>${dictionary.id} </td>
-							                  <td>${dictionary.dictName}</td>
-							                  <td><textarea style="width:350px" rows=2 id='${dictionary.id}id'>${dictionary.dictValue}</textarea></td>
-							                  <td>
-							                  	<button class="btn btn-danger" onclick="editDictionary(${dictionary.id})">修改</button>
-							                  </td>
-							                </tr>
-									   </c:forEach>
-						              </tbody>
-						            </table>
-                                </div>
+                            <div class="span12">
+                                 <form class="form-horizontal" action="<%=request.getContextPath()%>/department/save" method="post" id="searchForm">
+                                      <fieldset>
+                                        <legend>新增部门</legend>
+                                        <div class="control-group">
+                                          <label class="control-label">名称</label>
+                                          <div class="controls">
+                                           <input class="input-xlarge focused" name="name" id="name" type="text">
+                                          </div>
+                                        </div>
+                                        <div class="form-actions">
+                                          <button onclick="submitForm()" type="button" class="btn btn-primary">保存</button>
+                                          <button onclick="gohis()" class="btn">取消</button>
+                                        </div>
+                                      </fieldset>
+                                    </form>
+                            </div>
                             </div>
                         </div>
                         <!-- /block -->
@@ -94,24 +81,32 @@
                 </div>
             </div>
             <hr>
-           
+         <jsp:include page="../common/bottom.jsp" flush="true"/> 
         </div>
         <!--/.fluid-container-->
-<jsp:include page="../common/bottom.jsp" flush="true"/> 
+
 <script src="<%=request.getContextPath()%>/callstatic/vendors/jquery-1.9.1.js"></script>
 <script src="<%=request.getContextPath()%>/callstatic/bootstrap/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/callstatic/assets/scripts.js"></script>
+<script src="<%=request.getContextPath()%>/callstatic/assets/DT_bootstrap.js"></script>
 <script>
-
-function editDictionary(dictionaryid){
-	var val = $("#"+dictionaryid+"id").val();
-	if(val==""){
-		alert("不能为空！");
+function submitForm(){
+	if($("#name").val()==""){
+		alert("请输入名称！");
 		return false;
 	}
-	window.location.href="<%=request.getContextPath()%>/dictionary/editDictionary?dictionaryid="+dictionaryid+"&dictValue="+ encodeURI(encodeURI(val));
+	$("#searchForm").submit();
+}
+function gohis(){
+	history.go(-1);
+}
+function test(userid){
+	//alert(userid);
 }
 
+$(function() {
+    
+});
 </script>
 </body>
 </html>

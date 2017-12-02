@@ -36,6 +36,9 @@
                         <li class="activeli">
                             <a href="/manage"><i class="icon-chevron-right"></i> 用户管理</a>
                         </li>
+                         <li>
+                            <a href="<%=request.getContextPath()%>/department"><i class="icon-chevron-right"></i> 部门管理</a>
+                        </li>
                        <li>
                             <a href="<%=request.getContextPath()%>/dictionary"><i class="icon-chevron-right"></i> 内容管理</a>
                         </li><!-- <li>
@@ -71,7 +74,13 @@
                                         <div class="control-group">
                                           <label class="control-label" for="focusedInput">用户部门</label>
                                           <div class="controls">
-                                            <input class="input-xlarge focused" name="department"  type="text" value="" >
+                                          	  <select class="form-control m-bot15" name="department" id="department">
+						                          <c:forEach items="${depatList}" var="depart" >
+						                          	<option value="${depart.name}">
+						                          		${depart.name}
+						                          	</option>
+						                        </c:forEach>
+					                          </select>
                                           </div>
                                         </div>
                                         <div class="control-group">

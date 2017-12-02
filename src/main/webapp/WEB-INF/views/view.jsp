@@ -215,7 +215,7 @@ background-color:#d6e4fd !important;
 														<tr>
 															<th>个税</th>
 															<th>通信补贴</th>
-															<th></th>
+															<th>加班费用</th>
 															<th></th>
 															<th></th>
 															<th></th>
@@ -227,7 +227,7 @@ background-color:#d6e4fd !important;
 														<tr class="bottombor">
 															<td>${salaryOne.geshui  }</td>
 															<td>${salaryOne.tongxin }</td>
-															<td></td>
+															<td>${salaryOne.jiaban }</td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -238,23 +238,47 @@ background-color:#d6e4fd !important;
 
 													<thead>
 														<tr>
+															<th>咨询费</th>
+															<th>评审费</th>
+															<th>审稿费</th>
 															<th>编辑费</th>
 															<th>值班费</th>
+															<th>其他</th>
 															<th>讲课费</th>
+															
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="bottombor">
+															<td>${salaryTwo.zixun }</td>
+															<td>${salaryTwo.pingshen }</td>
+															<td>${salaryTwo.shengao }</td>
+															<td>${salaryTwo.bianji }</td>
+															<td>${salaryTwo.zhiban }</td>
+															<td>${salaryTwo.qita }</td>
+															<td>${salaryTwo.jiangke }</td>
+
+														</tr>
+													</tbody>
+													<thead>
+														<tr>
 															<th>出车补助</th>
 															<th>应发费用合计</th>
 															<th>费用个税</th>
+															<th></th>
+															<th></th>
+															<th></th>
 															<th></th>
 														</tr>
 													</thead>
 													<tbody>
 														<tr class="bottombor">
-															<td>${salaryTwo.bianji }</td>
-															<td>${salaryTwo.zhiban }</td>
-															<td>${salaryTwo.jiangke }</td>
 															<td>${salaryTwo.chuche }</td>
 															<td>${salaryTwo.yingfaheji }</td>
 															<td>${salaryTwo.geshui }</td>
+															<td></td>
+															<td></td>
+															<td></td>
 															<td></td>
 
 														</tr>

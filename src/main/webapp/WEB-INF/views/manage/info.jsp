@@ -37,7 +37,7 @@
                             <a href=""><i class="icon-chevron-right"></i> 菜单</a>
                         </li>
                         <li >
-                            <a href="<%=request.getContextPath()%>/salary"><i class="icon-chevron-right"></i>工资管理</a>
+                            <a href="<%=request.getContextPath()%>/salary/manage"><i class="icon-chevron-right"></i>工资管理</a>
                         </li>
                     </ul>
                 </div>

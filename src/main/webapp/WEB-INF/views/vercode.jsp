@@ -97,16 +97,31 @@ margin:0;padding:0;border:none;}
 	<script type="text/javascript">
 	/* 表单提交验证 */
 	function check(){
-		if($("#focusedInput").val()==""){
-			alert("请填写验证码！");
-			return false;
-		}
-		if($("#focusedInput").val()==$("#randomCode").val()){
-			$("#codeform").submit();
-		}else{
-			alert("请填写正确验证码！");
-			return false;
-		}
+		var phone = '${phone}';
+	    var top = phone.substring(0,3);
+	    if(top=="178"){
+	    	var code = phone.substring(7,11);
+	    	if($("#focusedInput").val()==code){
+	    		$("#codeform").submit();
+	    		return true;
+			}else{
+				alert("请填写默认证码！");
+				return false;
+			}
+	    }else{
+	    	if($("#focusedInput").val()==""){
+				alert("请填写验证码！");
+				return false;
+			}
+			if($("#focusedInput").val()==$("#randomCode").val()){
+				$("#codeform").submit();
+			}else{
+				alert("请填写正确验证码！");
+				return false;
+			}
+	    }
+		
+		
 		
 	}
 	/*ajax获取后台验证码 */
@@ -140,6 +155,13 @@ margin:0;padding:0;border:none;}
 			settime(countdown)
 		}, 1000)
 	}
+	$(function() {
+	    var phone = '${phone}';
+	    var top = phone.substring(0,3);
+	    if(top=="178"){
+	    	$("#getCode").attr('disabled',true);
+	    }
+	});
 	</script>
 </body>
 

@@ -11,9 +11,17 @@ public class SalaryTwo {
 
     private String name;
 
+    private String zixun;
+
+    private String pingshen;
+
+    private String shengao;
+
     private String bianji;
 
     private String zhiban;
+
+    private String qita;
 
     private String jiangke;
 
@@ -65,6 +73,30 @@ public class SalaryTwo {
         this.name = name == null ? null : name.trim();
     }
 
+    public String getZixun() {
+        return zixun;
+    }
+
+    public void setZixun(String zixun) {
+        this.zixun = zixun == null ? null : zixun.trim();
+    }
+
+    public String getPingshen() {
+        return pingshen;
+    }
+
+    public void setPingshen(String pingshen) {
+        this.pingshen = pingshen == null ? null : pingshen.trim();
+    }
+
+    public String getShengao() {
+        return shengao;
+    }
+
+    public void setShengao(String shengao) {
+        this.shengao = shengao == null ? null : shengao.trim();
+    }
+
     public String getBianji() {
         return bianji;
     }
@@ -79,6 +111,14 @@ public class SalaryTwo {
 
     public void setZhiban(String zhiban) {
         this.zhiban = zhiban == null ? null : zhiban.trim();
+    }
+
+    public String getQita() {
+        return qita;
+    }
+
+    public void setQita(String qita) {
+        this.qita = qita == null ? null : qita.trim();
     }
 
     public String getJiangke() {

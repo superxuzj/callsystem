@@ -24,6 +24,7 @@
     <result column="FUDONGGANGWEI" property="fudonggangwei" jdbcType="VARCHAR" />
     <result column="WUYEFEI" property="wuyefei" jdbcType="VARCHAR" />
     <result column="XIANGMUJIXIAO" property="xiangmujixiao" jdbcType="VARCHAR" />
+    <result column="JIABAN" property="jiaban" jdbcType="VARCHAR" />
     <result column="BUFA" property="bufa" jdbcType="VARCHAR" />
     <result column="YINGFAHEJI" property="yingfaheji" jdbcType="VARCHAR" />
     <result column="QITA" property="qita" jdbcType="VARCHAR" />
@@ -43,8 +44,8 @@
   <sql id="Base_Column_List" >
     ID, USERID, DEPARTMENT, NAME, XINJI, GANGWEI, GONGGAI, JINTIE, FUDONG, ZHIBU, DIQU, 
     JIAOBU, WEINARU, TIZU, HUIYINGDU, CAILANZI, SHENGHUO, TONGXIN, GUGINGGANGWEI, FUDONGGANGWEI, 
-    WUYEFEI, XIANGMUJIXIAO, BUFA, YINGFAHEJI, QITA, GESHUI, GONGJIJIN, YANGLAO, SHIYE, 
-    BUKOUGONG, KOUGONGHUI, YUKOU, SHIFAHEJI, COUNT, NIANYUE, CTRATETIME, CTRATOR
+    WUYEFEI, XIANGMUJIXIAO, JIABAN, BUFA, YINGFAHEJI, QITA, GESHUI, GONGJIJIN, YANGLAO, 
+    SHIYE, BUKOUGONG, KOUGONGHUI, YUKOU, SHIFAHEJI, COUNT, NIANYUE, CTRATETIME, CTRATOR
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -64,12 +65,12 @@
       WEINARU, TIZU, HUIYINGDU, 
       CAILANZI, SHENGHUO, TONGXIN, 
       GUGINGGANGWEI, FUDONGGANGWEI, WUYEFEI, 
-      XIANGMUJIXIAO, BUFA, YINGFAHEJI, 
-      QITA, GESHUI, GONGJIJIN, 
-      YANGLAO, SHIYE, BUKOUGONG, 
-      KOUGONGHUI, YUKOU, SHIFAHEJI, 
-      COUNT, NIANYUE, CTRATETIME, 
-      CTRATOR)
+      XIANGMUJIXIAO, JIABAN, BUFA, 
+      YINGFAHEJI, QITA, GESHUI, 
+      GONGJIJIN, YANGLAO, SHIYE, 
+      BUKOUGONG, KOUGONGHUI, YUKOU, 
+      SHIFAHEJI, COUNT, NIANYUE, 
+      CTRATETIME, CTRATOR)
     values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{xinji,jdbcType=VARCHAR}, #{gangwei,jdbcType=VARCHAR}, 
       #{gonggai,jdbcType=VARCHAR}, #{jintie,jdbcType=VARCHAR}, #{fudong,jdbcType=VARCHAR}, 
@@ -77,12 +78,12 @@
       #{weinaru,jdbcType=VARCHAR}, #{tizu,jdbcType=VARCHAR}, #{huiyingdu,jdbcType=VARCHAR}, 
       #{cailanzi,jdbcType=VARCHAR}, #{shenghuo,jdbcType=VARCHAR}, #{tongxin,jdbcType=VARCHAR}, 
       #{guginggangwei,jdbcType=VARCHAR}, #{fudonggangwei,jdbcType=VARCHAR}, #{wuyefei,jdbcType=VARCHAR}, 
-      #{xiangmujixiao,jdbcType=VARCHAR}, #{bufa,jdbcType=VARCHAR}, #{yingfaheji,jdbcType=VARCHAR}, 
-      #{qita,jdbcType=VARCHAR}, #{geshui,jdbcType=VARCHAR}, #{gongjijin,jdbcType=VARCHAR}, 
-      #{yanglao,jdbcType=VARCHAR}, #{shiye,jdbcType=VARCHAR}, #{bukougong,jdbcType=VARCHAR}, 
-      #{kougonghui,jdbcType=VARCHAR}, #{yukou,jdbcType=VARCHAR}, #{shifaheji,jdbcType=VARCHAR}, 
-      #{count,jdbcType=VARCHAR}, #{nianyue,jdbcType=VARCHAR}, #{ctratetime,jdbcType=TIMESTAMP}, 
-      #{ctrator,jdbcType=VARCHAR})
+      #{xiangmujixiao,jdbcType=VARCHAR}, #{jiaban,jdbcType=VARCHAR}, #{bufa,jdbcType=VARCHAR}, 
+      #{yingfaheji,jdbcType=VARCHAR}, #{qita,jdbcType=VARCHAR}, #{geshui,jdbcType=VARCHAR}, 
+      #{gongjijin,jdbcType=VARCHAR}, #{yanglao,jdbcType=VARCHAR}, #{shiye,jdbcType=VARCHAR}, 
+      #{bukougong,jdbcType=VARCHAR}, #{kougonghui,jdbcType=VARCHAR}, #{yukou,jdbcType=VARCHAR}, 
+      #{shifaheji,jdbcType=VARCHAR}, #{count,jdbcType=VARCHAR}, #{nianyue,jdbcType=VARCHAR}, 
+      #{ctratetime,jdbcType=TIMESTAMP}, #{ctrator,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.superx.callorder.entity.SalaryOne" >
     insert into t_salaryone
@@ -152,6 +153,9 @@
       </if>
       <if test="xiangmujixiao != null" >
         XIANGMUJIXIAO,
+      </if>
+      <if test="jiaban != null" >
+        JIABAN,
       </if>
       <if test="bufa != null" >
         BUFA,
@@ -266,6 +270,9 @@
       <if test="xiangmujixiao != null" >
         #{xiangmujixiao,jdbcType=VARCHAR},
       </if>
+      <if test="jiaban != null" >
+        #{jiaban,jdbcType=VARCHAR},
+      </if>
       <if test="bufa != null" >
         #{bufa,jdbcType=VARCHAR},
       </if>
@@ -379,6 +386,9 @@
       <if test="xiangmujixiao != null" >
         XIANGMUJIXIAO = #{xiangmujixiao,jdbcType=VARCHAR},
       </if>
+      <if test="jiaban != null" >
+        JIABAN = #{jiaban,jdbcType=VARCHAR},
+      </if>
       <if test="bufa != null" >
         BUFA = #{bufa,jdbcType=VARCHAR},
       </if>
@@ -450,6 +460,7 @@
       FUDONGGANGWEI = #{fudonggangwei,jdbcType=VARCHAR},
       WUYEFEI = #{wuyefei,jdbcType=VARCHAR},
       XIANGMUJIXIAO = #{xiangmujixiao,jdbcType=VARCHAR},
+      JIABAN = #{jiaban,jdbcType=VARCHAR},
       BUFA = #{bufa,jdbcType=VARCHAR},
       YINGFAHEJI = #{yingfaheji,jdbcType=VARCHAR},
       QITA = #{qita,jdbcType=VARCHAR},
