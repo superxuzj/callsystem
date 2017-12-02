@@ -148,7 +148,7 @@ public class LoginController extends BaseCommonController{
   		if(change==null || change.equals("")){
   			
   		}else{
-  			model.addAttribute("change", "--为了确保你的账户，请您修改初始密码。");
+  			model.addAttribute("change", "--为了确保您的账户安全，请您修改初始密码。");
   		}
   		User user = userService.selectByPrimaryKey(id);
   		model.addAttribute("user", user);
@@ -162,6 +162,7 @@ public class LoginController extends BaseCommonController{
   		if(user.getPassword().equals("")){
   			user.setPassword(olduser.getPassword());
   		}
+  		user.setOperatorTime(new Date());
   		userService.updateByPrimaryKeySelective(user);
   		model.addAttribute("user", user);
 		return "redirect:/loginout";

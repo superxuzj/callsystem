@@ -154,6 +154,8 @@ public class SalaryControllor extends BaseCommonController {
 			salaryOne.setBukougong(getDecrypt(salaryOne.getBukougong()));
 			salaryOne.setKougonghui(getDecrypt(salaryOne.getKougonghui()));
 			
+			salaryOne.setJiaban(getDecrypt(salaryOne.getJiaban()));
+			
 			salaryOne.setShifaheji(getDecrypt(salaryOne.getShifaheji()));
 		}
 		
@@ -166,6 +168,13 @@ public class SalaryControllor extends BaseCommonController {
 		SalaryTwo salaryTwo = new SalaryTwo();
 		if(list2!=null && list2.size()>0){
 			salaryTwo = list2.get(0);
+			
+			salaryTwo.setZixun(getDecrypt(salaryTwo.getZixun()));
+			salaryTwo.setPingshen(getDecrypt(salaryTwo.getPingshen()));
+			salaryTwo.setShengao(getDecrypt(salaryTwo.getShengao()));
+			
+			salaryTwo.setQita(getDecrypt(salaryTwo.getQita()));
+			
 			salaryTwo.setBianji(getDecrypt(salaryTwo.getBianji()));
 			salaryTwo.setZhiban(getDecrypt(salaryTwo.getZhiban()));
 			salaryTwo.setJiangke(getDecrypt(salaryTwo.getJiangke()));
@@ -304,32 +313,38 @@ public class SalaryControllor extends BaseCommonController {
 						salaryOne.setWuyefei(getValue(wuyefei));
 						HSSFCell xiangmujixiao = hssfRow.getCell(19);
 						salaryOne.setXiangmujixiao(getValue(xiangmujixiao));
-						HSSFCell bufa = hssfRow.getCell(20);
+						
+						//新加2
+						HSSFCell jiaban = hssfRow.getCell(20);
+						salaryOne.setJiaban(getValue(jiaban));
+						
+						
+						HSSFCell bufa = hssfRow.getCell(21);
 						salaryOne.setBufa(getValue(bufa));
-						HSSFCell yingfaheji = hssfRow.getCell(21);
+						HSSFCell yingfaheji = hssfRow.getCell(22);
 						salaryOne.setYingfaheji(getValue(yingfaheji));
-						HSSFCell qita = hssfRow.getCell(22);
+						HSSFCell qita = hssfRow.getCell(23);
 						salaryOne.setQita(getValue(qita));
-						HSSFCell geshui = hssfRow.getCell(23);
+						HSSFCell geshui = hssfRow.getCell(24);
 						salaryOne.setGeshui(getValue(geshui));
-						HSSFCell gongjijin = hssfRow.getCell(24);
+						HSSFCell gongjijin = hssfRow.getCell(25);
 						salaryOne.setGongjijin(getValue(gongjijin));
-						HSSFCell yanglao = hssfRow.getCell(25);
+						HSSFCell yanglao = hssfRow.getCell(26);
 						salaryOne.setYanglao(getValue(yanglao));
-						HSSFCell shiye = hssfRow.getCell(26);
+						HSSFCell shiye = hssfRow.getCell(27);
 						salaryOne.setShiye(getValue(shiye));
 						
 						//新加的两个
-						HSSFCell bukougong = hssfRow.getCell(27);
+						HSSFCell bukougong = hssfRow.getCell(28);
 						salaryOne.setBukougong(getValue(bukougong));
-						HSSFCell kougonghui = hssfRow.getCell(28);
+						HSSFCell kougonghui = hssfRow.getCell(29);
 						salaryOne.setKougonghui(getValue(kougonghui));
 						
-						HSSFCell yukou = hssfRow.getCell(29);
+						HSSFCell yukou = hssfRow.getCell(30);
 						salaryOne.setYukou(getValue(yukou));
-						HSSFCell shifaheji = hssfRow.getCell(30);
+						HSSFCell shifaheji = hssfRow.getCell(31);
 						salaryOne.setShifaheji(getValue(shifaheji));
-						HSSFCell count = hssfRow.getCell(31);
+						HSSFCell count = hssfRow.getCell(32);
 						salaryOne.setCount(getCount(count));
 						String year =new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime());
 						String month = getCount(count);
@@ -348,7 +363,7 @@ public class SalaryControllor extends BaseCommonController {
 			}else{
 				//去重操作，删除当前月份的数据
 				HSSFRow hssfRowCount = hssfSheet.getRow(1);
-				salaryTwoService.deletByCount(getCount(hssfRowCount.getCell(9)));
+				salaryTwoService.deletByCount(getCount(hssfRowCount.getCell(13)));
 				// 工资条2 少的
 				for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
 					HSSFRow hssfRow = hssfSheet.getRow(rowNum);
@@ -357,25 +372,39 @@ public class SalaryControllor extends BaseCommonController {
 						HSSFCell department = hssfRow.getCell(0);
 						salaryTwo.setDepartment(getNoValue(department));
 						HSSFCell name = hssfRow.getCell(1);
-						if (getNoValue(name).trim().equals("")) {
+						if (null==name || getNoValue(name).trim().equals("")) {
 							continue;
 						}
 						salaryTwo.setName(getNoValue(name));
-						HSSFCell bianji = hssfRow.getCell(2);
+						
+						HSSFCell zixun = hssfRow.getCell(2);
+						salaryTwo.setZixun(getValue(zixun));
+						
+						HSSFCell pingshen = hssfRow.getCell(3);
+						salaryTwo.setPingshen(getValue(pingshen));
+						
+						HSSFCell shengao = hssfRow.getCell(4);
+						salaryTwo.setShengao(getValue(shengao));
+						
+						HSSFCell bianji = hssfRow.getCell(5);
 						salaryTwo.setBianji(getValue(bianji));
-						HSSFCell zhiban = hssfRow.getCell(3);
+						HSSFCell zhiban = hssfRow.getCell(6);
 						salaryTwo.setZhiban(getValue(zhiban));
-						HSSFCell jiangke = hssfRow.getCell(4);
+						
+						HSSFCell qita = hssfRow.getCell(7);
+						salaryTwo.setQita(getValue(qita));
+						
+						HSSFCell jiangke = hssfRow.getCell(8);
 						salaryTwo.setJiangke(getValue(jiangke));
-						HSSFCell chuche = hssfRow.getCell(5);
+						HSSFCell chuche = hssfRow.getCell(9);
 						salaryTwo.setChuche(getValue(chuche));
-						HSSFCell yingfa = hssfRow.getCell(6);
+						HSSFCell yingfa = hssfRow.getCell(10);
 						salaryTwo.setYingfaheji(getValue(yingfa));
-						HSSFCell geshui = hssfRow.getCell(7);
+						HSSFCell geshui = hssfRow.getCell(11);
 						salaryTwo.setGeshui(getValue(geshui));
-						HSSFCell shifaheji = hssfRow.getCell(8);
+						HSSFCell shifaheji = hssfRow.getCell(12);
 						salaryTwo.setShifaheji(getValue(shifaheji));
-						HSSFCell count = hssfRow.getCell(9);
+						HSSFCell count = hssfRow.getCell(13);
 						salaryTwo.setCount(getCount(count));
 						//年月
 						String year =new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime());

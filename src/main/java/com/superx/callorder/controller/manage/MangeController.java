@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.superx.callorder.common.Pager;
+import com.superx.callorder.entity.Department;
 import com.superx.callorder.entity.User;
+import com.superx.callorder.service.DepartmentService;
 import com.superx.callorder.service.UserService;
 
 @Controller
@@ -21,6 +23,9 @@ import com.superx.callorder.service.UserService;
 public class MangeController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private DepartmentService departmentService;
 	
 	@RequestMapping("")
     public String index(HttpServletRequest request, 
@@ -50,6 +55,9 @@ public class MangeController {
     		Integer id,Model model) {
 		User user =  userService.selectByPrimaryKey(id);
 		model.addAttribute("user", user);
+		
+	  List<Department> depatList = departmentService.selectDepartmentList(new Department());
+	  model.addAttribute("depatList", depatList);
         return "/manage/useredit";
     }
 	
@@ -67,9 +75,11 @@ public class MangeController {
     		User user,Model model) {
 		String password = user.getPassword();
 		String phone = user.getPhone();
+		String department = user.getDepartment();
 		user =  userService.selectByPrimaryKey(user.getId());
 		user.setPassword(password);
 		user.setPhone(phone);
+		user.setDepartment(department);
 		userService.updateByPrimaryKeySelective(user);
         return "redirect:/manage";
     }
@@ -104,6 +114,8 @@ public class MangeController {
     public String goadduser(HttpServletRequest request, 
     		HttpServletResponse response,
     		Integer id,Model model) {
+		List<Department> depatList = departmentService.selectDepartmentList(new Department());
+		  model.addAttribute("depatList", depatList);
         return "/manage/useradd";
     }
 	
