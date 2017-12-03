@@ -182,4 +182,38 @@ public class DesUtils {
 	      e.printStackTrace();
 	    }
 	  }
+	  
+	  /**
+	   * 加密数据
+	   * @param value
+	   * @return
+	   */
+	  public static String getEncryptValue(String value) {
+			String returnString = "";
+			try {
+				DesUtils des = new DesUtils();
+				returnString = des.encrypt(value);
+			} catch (Exception c) {
+				// TODO Auto-generated catch block
+				c.printStackTrace();
+			}
+			return returnString;
+		}
+		
+	  /**
+	   * 解密数据
+	   * @param value
+	   * @return
+	   */
+	  public static String getDecryptValue(String value) {
+			String returnString = "";
+			try {
+				DesUtils des = new DesUtils();
+				returnString = des.decrypt(value);
+			} catch (Exception c) {
+				// TODO Auto-generated catch block
+				c.printStackTrace();
+			}
+			return returnString;
+		}
 }

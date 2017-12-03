@@ -93,7 +93,7 @@
                                         <div class="control-group warning">
                                           <label class="control-label" for="inputError">用户密码</label>
                                           <div class="controls">
-                                            <input type="text" name="password" value="${user.password }">
+                                             <button onclick="resertpwd(${user.id })" type="button" class="btn btn-primary">重置密码</button>
                                           </div>
                                         </div>
                                         <div class="form-actions">
@@ -121,6 +121,22 @@
 <script src="<%=request.getContextPath()%>/callstatic/assets/scripts.js"></script>
 <script src="<%=request.getContextPath()%>/callstatic/assets/DT_bootstrap.js"></script>
 <script>
+function resertpwd(id){
+	$.ajax({
+		url: "<%=request.getContextPath()%>/manage/resetpwd",
+		data: {"id":id},
+		async: true,
+		type: 'POST',
+		success:function(data){
+			if(data=="success"){
+				alert("密码重置为初始密码成功！");
+			}else{
+				alert("密码重置失败！");
+			}
+			
+		}
+	});
+}
 function submitForm(){
 	$("#searchForm").submit();
 }

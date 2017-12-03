@@ -62,7 +62,7 @@
                                         <div class="control-group">
                                           <label class="control-label">用户姓名</label>
                                           <div class="controls">
-                                           <input class="input-xlarge focused" name="name" type="text" value="">
+                                           <input class="input-xlarge focused" name="name" id="name" type="text" value="">
                                           </div>
                                         </div>
                                         <div class="control-group">
@@ -95,14 +95,14 @@
 		  									</select>
                                           </div>
                                         </div>
-                                        <div class="control-group warning">
+                                       <!--  <div class="control-group warning">
                                           <label class="control-label" for="inputError">用户密码</label>
                                           <div class="controls">
                                             <input type="text" class="input-xlarge focused" name="password" value="">
                                           </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-actions">
-                                          <button onclick="submitForm()" class="btn btn-primary">保存修改</button>
+                                          <button onclick="submitForm()" type="button" class="btn btn-primary">保存修改</button>
                                           <button onclick="gohis()" class="btn">取消</button>
                                         </div>
                                       </fieldset>
@@ -127,7 +127,11 @@
 <script src="<%=request.getContextPath()%>/callstatic/assets/DT_bootstrap.js"></script>
 <script>
 function submitForm(){
-	$("#searchForm").submit();
+	if($("#name").val()==""){
+		alert("请输入姓名！");
+		return false;
+	}
+	$("#saveForm").submit();
 }
 function gohis(){
 	history.go(-1);

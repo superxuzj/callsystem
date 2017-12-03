@@ -11,12 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.superx.callorder.common.Pager;
 import com.superx.callorder.entity.Department;
 import com.superx.callorder.entity.User;
 import com.superx.callorder.service.DepartmentService;
 import com.superx.callorder.service.UserService;
+import com.superx.callorder.util.DesUtils;
 
 @Controller
 @RequestMapping("/manage")
@@ -35,6 +37,12 @@ public class MangeController {
 		user.setStart((pageNo-1)*10);
 		user.setLimit(10);
 		List<User> userList = userService.selectUserList(user);
+		
+		/*for (User user2 : userList) {
+			user2.setPassword(DesUtils.getEncryptValue(user2.getPassword()));
+			userService.updateByPrimaryKeySelective(user2);
+		}*/
+		
 		Integer count = userService.selectUserListCount(user);
 		Pager<User> pager = new Pager<User>(pageNo,10,count,userList);
 		model.addAttribute("page", pager);
@@ -73,11 +81,11 @@ public class MangeController {
     public String updateuser(HttpServletRequest request, 
     		HttpServletResponse response,
     		User user,Model model) {
-		String password = user.getPassword();
+		//String password = user.getPassword();
 		String phone = user.getPhone();
 		String department = user.getDepartment();
 		user =  userService.selectByPrimaryKey(user.getId());
-		user.setPassword(password);
+		//user.setPassword(password);
 		user.setPhone(phone);
 		user.setDepartment(department);
 		userService.updateByPrimaryKeySelective(user);
@@ -133,12 +141,38 @@ public class MangeController {
     		User user,Model model) {
 		user.setOperatorTime(new Date());
 		user.setOperatorName("admin");
+		String paw = DesUtils.getEncryptValue("111111");
+		user.setPassword(paw);
 		int i = userService.insertSelective(user);
 		if(i>0){
 			return "redirect:/manage";
 		}else{
 			return "redirect:/manage";
 		}
-        
     }
+	
+	/**
+	 * 重置密码
+	 * @param request
+	 * @param response
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/resetpwd")
+	@ResponseBody
+    public String resetpwd(HttpServletRequest request, 
+    		HttpServletResponse response,
+    		User user,Model model) {
+		User record = userService.selectByPrimaryKey(user.getId());
+		String paw = DesUtils.getEncryptValue("111111");
+		record.setPassword(paw);
+		int i = userService.updateByPrimaryKeySelective(record);
+		if(i>0){
+			return "success";
+		}else{
+			return "fail";
+		}
+    }
+	
 }

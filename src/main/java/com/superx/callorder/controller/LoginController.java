@@ -22,6 +22,7 @@ import com.superx.callorder.service.LoginInfoService;
 import com.superx.callorder.service.UserService;
 import com.superx.callorder.util.CommonUtils;
 import com.superx.callorder.util.Constant;
+import com.superx.callorder.util.DesUtils;
 
 @Controller
 public class LoginController extends BaseCommonController{
@@ -55,7 +56,7 @@ public class LoginController extends BaseCommonController{
 		loginInfo.setName(usermodel.getName());
 		loginInfo.setUsername(usermodel.getPhone());
 		loginInfoService.insertSelective(loginInfo);
-		if(usermodel.getPassword().equals("111111")){
+		if(usermodel.getPassword().equals(DesUtils.getEncryptValue("111111"))){
 			return "redirect:/changepwd?id="+usermodel.getId()+"&change=1";
 		}
 		if(usermodel.getType()!=null && usermodel.getType().equals("5")){
@@ -125,7 +126,8 @@ public class LoginController extends BaseCommonController{
 //  		HttpSession sesion = request.getSession();
   		User user = new User();
   		user.setPhone(phone);
-  		user.setPassword(password);
+  		user.setPassword(DesUtils.getEncryptValue(password));
+  		//user.setPassword(password);
   		List<User> loginList = userService.selectUserList(user);
   		Map<String,String> map = new HashMap<String,String> ();
   		if(loginList!=null && loginList.size()>0){
@@ -151,6 +153,7 @@ public class LoginController extends BaseCommonController{
   			model.addAttribute("change", "--为了确保您的账户安全，请您修改初始密码。");
   		}
   		User user = userService.selectByPrimaryKey(id);
+  		user.setPassword(DesUtils.getDecryptValue(user.getPassword()));
   		model.addAttribute("user", user);
 		return "changepwd";
 	}
@@ -161,6 +164,10 @@ public class LoginController extends BaseCommonController{
   		User olduser = userService.selectByPrimaryKey(user.getId());
   		if(user.getPassword().equals("")){
   			user.setPassword(olduser.getPassword());
+  		}else{
+  			//修改密码 加密
+  			user.setPassword(DesUtils.getEncryptValue(user.getPassword()));
+  			
   		}
   		user.setOperatorTime(new Date());
   		userService.updateByPrimaryKeySelective(user);
