@@ -79,6 +79,7 @@ public class SalaryControllor extends BaseCommonController {
 		if(user.getPhone()!=null && !user.getPhone().equals("")){
 			model.addAttribute("phone", user.getPhone());
 		}
+		request.getSession().setAttribute("code", "none");
 		return "vercode";
 	}
 	
@@ -96,7 +97,20 @@ public class SalaryControllor extends BaseCommonController {
 		phone = "tel:"+phone;
 		String code = CommonUtils.getFourRandom();
 		SendMessageUtil.sendMessage(phone, "您的验证码为："+code+"，请妥善保管，不要告诉其他人。");
-		return code;
+		request.getSession().setAttribute("code", code);
+		return "ok";
+	}
+
+	
+	@RequestMapping("/valcode")
+	@ResponseBody
+	public String valcode(HttpServletRequest request,Model model,String code) {
+		
+		if(code.equals(request.getSession().getAttribute("code"))){
+			return "success";
+		}else{
+			return "fail";
+		}
 	}
 
 	/**

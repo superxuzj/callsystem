@@ -59,7 +59,6 @@ margin:0;padding:0;border:none;}
                                           <div class="controls">
                                             <span class="input-xlarge uneditable-input">${phone}</span>
                                             <input type="button" class="btn getCode" id="getCode" value="获取验证码" onclick="getVercode('${phone}')">
-                                          	<input id="randomCode" type="hidden" value="">
                                           </div>
                                         </div>
                                         <div class="control-group">
@@ -69,7 +68,7 @@ margin:0;padding:0;border:none;}
                                           </div>
                                         </div>
                                         <div class="form-actions">
-                                          <button type="submit" class="btn btn-primary" onclick="return check()">确定</button>
+                                          <button type="button" class="btn btn-primary" onclick="check()">确定</button>
                                         </div>
                                       </fieldset>
                                     </form>
@@ -109,30 +108,37 @@ margin:0;padding:0;border:none;}
 				return false;
 			}
 	    }else{
-	    	if($("#focusedInput").val()==""){
+	    	var code = $("#focusedInput").val();
+	    	if(code==""){
 				alert("请填写验证码！");
 				return false;
 			}
-			if($("#focusedInput").val()==$("#randomCode").val()){
-				$("#codeform").submit();
-			}else{
-				alert("请填写正确验证码！");
-				return false;
-			}
+	    	
+	    	$.ajax({    
+		           type: 'post',    
+		           url: '/salary/valcode?code=' + code,    
+		           success: function (data) {    
+		               if(data=="success"){
+		            	   $("#codeform").submit();
+		               }else{
+		            	   alert("请填写正确验证码！");
+		   					return false;
+		               }
+		           },    
+		           error: function (data) { 
+		        	   window.location.reload();
+		             	//alert(data);
+		           }    
+		       });
 	    }
-		
-		
-		
 	}
 	/*ajax获取后台验证码 */
 	function getVercode(phone){
 	    $.ajax({    
 	           type: 'post',    
 	           url: '/salary/code?phone=' + phone,    
-	           dataType: "json",    
-	           success: function (data) {    
+	           success: function (data) {
 	               $("#getCode").attr('disabled',true);
-	               $("#randomCode").attr('value',data);
 	               settime(30);
 	           },    
 	           error: function (data) { 
