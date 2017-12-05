@@ -51,7 +51,7 @@ margin:0;padding:0;border:none;}
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                                     <form class="form-horizontal" id="codeform" action="/salary/view">
+                                     <form class="form-horizontal" onkeydown="if(event.keyCode==13)return false;" id="codeform" action="/salary/view">
                                       <fieldset>
                                         <legend>手机验证</legend>
                                         <div class="control-group">
@@ -64,7 +64,7 @@ margin:0;padding:0;border:none;}
                                         <div class="control-group">
                                           <label class="control-label" for="focusedInput">验证码：</label>
                                           <div class="controls">
-                                            <input class="input-xlarge focused" id="focusedInput" type="text" placeholder="填写验证码">
+                                            <input class="input-xlarge" id="focusedInput" type="text" placeholder="填写验证码">
                                           </div>
                                         </div>
                                         <div class="form-actions">
@@ -94,43 +94,33 @@ margin:0;padding:0;border:none;}
 	<script src="<%=request.getContextPath()%>/callstatic/bootstrap/js/jquery.bootstrap.newsbox.js"
 		type="text/javascript"></script>
 	<script type="text/javascript">
+	
 	/* 表单提交验证 */
 	function check(){
-		var phone = '${phone}';
-	    var top = phone.substring(0,3);
-	    if(top=="178"){
-	    	var code = phone.substring(7,11);
-	    	if($("#focusedInput").val()==code){
-	    		$("#codeform").submit();
-	    		return true;
-			}else{
-				alert("请填写默认证码！");
-				return false;
-			}
-	    }else{
-	    	var code = $("#focusedInput").val();
-	    	if(code==""){
-				alert("请填写验证码！");
-				return false;
-			}
-	    	
-	    	$.ajax({    
-		           type: 'post',    
-		           url: '/salary/valcode?code=' + code,    
-		           success: function (data) {    
-		               if(data=="success"){
-		            	   $("#codeform").submit();
-		               }else{
-		            	   alert("请填写正确验证码！");
-		   					return false;
-		               }
-		           },    
-		           error: function (data) { 
-		        	   window.location.reload();
-		             	//alert(data);
-		           }    
-		       });
-	    }
+	   
+    	var phone = '${phone}';
+    	var code = $("#focusedInput").val();
+    	if(code==""){
+			alert("请填写验证码！");
+			return false;
+		}
+    	
+    	$.ajax({    
+	           type: 'post',    
+	           url: '/salary/valcode?code=' + code+"&phone="+phone,    
+	           success: function (data) {    
+	               if(data=="success"){
+	            	   $("#codeform").submit();
+	               }else{
+	            	   alert("请填写正确验证码！");
+	   					return false;
+	               }
+	           },    
+	           error: function (data) { 
+	        	   window.location.reload();
+	             	//alert(data);
+	           }    
+	       });
 	}
 	/*ajax获取后台验证码 */
 	function getVercode(phone){

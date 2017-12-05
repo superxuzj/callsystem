@@ -104,13 +104,25 @@ public class SalaryControllor extends BaseCommonController {
 	
 	@RequestMapping("/valcode")
 	@ResponseBody
-	public String valcode(HttpServletRequest request,Model model,String code) {
+	public String valcode(HttpServletRequest request,Model model,
+			String code,String phone) {
 		
-		if(code.equals(request.getSession().getAttribute("code"))){
-			return "success";
+		String top = phone.substring(0, 3);
+		if(top.equals("178")){
+			String valcode = phone.substring(7, 11);
+			if(code.equals(valcode)){
+				return "success";
+			}else{
+				return "fail";
+			}
 		}else{
-			return "fail";
+			if(code.equals(request.getSession().getAttribute("code"))){
+				return "success";
+			}else{
+				return "fail";
+			}
 		}
+		
 	}
 
 	/**
