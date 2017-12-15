@@ -44,6 +44,10 @@ public class LoginFilter implements Filter{
 			 chain.doFilter(request, response);
 	          return ;
     	}
+		if(httpRequest.getRequestURI().trim().equals("/")){
+			 chain.doFilter(request, response);
+	          return ;
+		}
         for (String page : excludedPageArray) {
             if (httpRequest.getRequestURI().indexOf(page)!=-1) {
                 isExcludedPage = true;

@@ -137,6 +137,10 @@ public class LoginController extends BaseCommonController{
   			session.setAttribute(Constant.USERNAME, usermodel.getName());
   			session.setAttribute(Constant.USERTYPE, usermodel.getType());
   			session.setAttribute(Constant.ISLOGIN, "OK");
+  			/*if(usermodel.getType().equals("1")){
+  				session.setMaxInactiveInterval(30 * 60);
+  			}*/
+  			
   			map.put("message", "OK");
   		}else{
   			map.put("message", "用户名或密码错误！");

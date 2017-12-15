@@ -67,7 +67,7 @@ margin-bottom:15px;
                                 <div class="control-group warning">
                                   <label class="control-label" for="inputError">手机号码</label>
                                   <div class="controls">
-                                    <input type="text" name="phone" value="${user.phone }">
+                                    <input type="text" name="phone" id="phone" value="${user.phone }">
                                     <span class="help-inline">修改手机号后请联系管理员，确保能收到报销通知短信。</span>
                                   </div>
                                 </div>
@@ -120,6 +120,10 @@ margin-bottom:15px;
 	<script type="text/javascript">
 	function saveUser(){
 		var oldpassword = '${user.password}';
+		if($("#phone").val()==""){
+			alert("请输入手机号！");
+			return ;
+		}
 		if($("#oldpwd").val()==""){
 			alert("请输入旧密码！");
 			return ;
