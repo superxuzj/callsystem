@@ -172,11 +172,11 @@ public class DesUtils {
 	    try {
 	      String test = "qwer";
 	      DesUtils des = new DesUtils();//自定义密钥   
-	      System.out.println("加密前的字符：" + test);
+	     /* System.out.println("加密前的字符：" + test);
 	      System.out.println("加密后的字符：" + des.encrypt(test));
 	      System.out.println("解密后的字符：" + des.decrypt("02baadcb2742f55e"));
-	      
-	      //System.out.println("解密后的字符：" + des.decrypt("202cb962ac59075b964b07152d234b70"));
+	     */ 
+	     System.out.println("解密后的字符：" + des.decrypt("ed51a53c2418f576aed11baed7eb1129"));
 	    }
 	    catch (Exception e) {
 	      e.printStackTrace();
